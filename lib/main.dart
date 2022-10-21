@@ -1,11 +1,9 @@
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 
 import 'init_base_services.dart';
 import 'assets/strs.dart';
-import 'screens/screen_holder.dart';
 import 'screens/screen_splash.dart';
 import 'services/service_locator.dart';
 
@@ -68,7 +66,6 @@ class Themes {
     //   ),
     // ),
     appBarTheme: const AppBarTheme().copyWith(
-      //   systemOverlayStyle: SystemUiOverlayStyle.dark,
       color: Colors.transparent,
       elevation: 0,
       scrolledUnderElevation: 0,
@@ -111,7 +108,6 @@ class Themes {
     //   ),
     // ),
     appBarTheme: const AppBarTheme().copyWith(
-      //   systemOverlayStyle: SystemUiOverlayStyle.light,
       color: Colors.transparent,
       elevation: 0,
       scrolledUnderElevation: 0,
@@ -119,8 +115,8 @@ class Themes {
     cardTheme: CardTheme(
       clipBehavior: Clip.antiAlias,
       elevation: 8,
-      color: const Color(0xff16202A),
-      surfaceTintColor: const Color(0xff16202A),
+      color: const Color(0xffFAFAFA),
+      surfaceTintColor: const Color(0xffFAFAFA),
       shape: SmoothRectangleBorder(
         borderRadius: SmoothBorderRadius(
           cornerRadius: 20,
@@ -136,8 +132,8 @@ class Themes {
     colorScheme: const ColorScheme.dark().copyWith(
       background: const Color(0xff18169F),
       onBackground: const Color(0xffFAFAFA),
-      surface: const Color(0xff16202A),
-      onSurface: const Color(0xffFAFAFA),
+      surface: const Color(0xffFAFAFA),
+      onSurface: const Color(0xff16202A),
       primary: const Color(0xff95CEC8),
       secondary: const Color(0xff00AFCE),
       tertiary: const Color(0xff008001),

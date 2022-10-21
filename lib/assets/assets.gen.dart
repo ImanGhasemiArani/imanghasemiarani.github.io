@@ -30,6 +30,10 @@ class $AssetsIconsGen {
   SvgGenImage get code1TwoTone =>
       const SvgGenImage('assets/icons/code-1-twoTone.svg');
 
+  /// File path: assets/icons/diamonds-bulk.svg
+  SvgGenImage get diamondsBulk =>
+      const SvgGenImage('assets/icons/diamonds-bulk.svg');
+
   /// File path: assets/icons/home-1-bulk.svg
   SvgGenImage get home1Bulk =>
       const SvgGenImage('assets/icons/home-1-bulk.svg');
@@ -52,6 +56,7 @@ class $AssetsIconsGen {
         brifecaseTimerTwoTone,
         code1Bulk,
         code1TwoTone,
+        diamondsBulk,
         home1Bulk,
         home1TwoTone,
         teacherBulk,
