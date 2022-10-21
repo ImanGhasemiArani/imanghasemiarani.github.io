@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:get/get.dart';
+import 'package:smooth_scroll_web/smooth_scroll_web.dart';
 
 import '../assets/assets.gen.dart';
 import '../assets/strs.dart';
@@ -8,11 +11,12 @@ import '../widgets/my_app_bar/my_app_bar.dart';
 import '../widgets/nav_bar/nav_bar.dart';
 import '../widgets/skills_content.dart';
 
-class ScreenHolder extends StatelessWidget {
+class ScreenHolder extends HookWidget {
   const ScreenHolder({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = GetPlatform.isMobile ? null : useScrollController();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(top: 50, left: 50, right: 50),
@@ -25,60 +29,74 @@ class ScreenHolder extends StatelessWidget {
                 child: ScrollConfiguration(
                   behavior: ScrollConfiguration.of(context)
                       .copyWith(scrollbars: false),
-                  child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    clipBehavior: Clip.none,
-                    padding: const EdgeInsets.only(top: 100),
-                    child: Column(
-                      children: [
-                        Align(
-                          alignment: Alignment.topCenter,
-                          child: Wrap(
-                            children: const [
-                              SizedBox(
-                                width: 600,
-                                child: AnimationConfiguration.staggeredList(
-                                  position: 1,
-                                  duration: Duration(milliseconds: 1000),
-                                  delay: Duration(milliseconds: 1000),
-                                  child: SlideAnimation(
-                                    horizontalOffset: -100,
-                                    verticalOffset: 50,
-                                    child: FadeInAnimation(
-                                      child: DescriptionContent(),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 600,
-                                child: AnimationConfiguration.staggeredList(
-                                  position: 1,
-                                  duration: Duration(milliseconds: 1000),
-                                  delay: Duration(milliseconds: 1000),
-                                  child: SlideAnimation(
-                                    horizontalOffset: 100,
-                                    verticalOffset: 50,
-                                    child: FadeInAnimation(
-                                      child: SkillsContent(),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                  child: GetPlatform.isMobile
+                      ? _buildScrollView(controller)
+                      : SmoothScrollWeb(
+                          controller: controller,
+                          scrollAnimationLength: 600,
+                          curve: Curves.decelerate,
+                          child: _buildScrollView(controller),
                         ),
-                        Container(
-                          height: 2000,
-                        ),
-                      ],
-                    ),
-                  ),
                 ),
               ),
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  SingleChildScrollView _buildScrollView(ScrollController? controller) {
+    return SingleChildScrollView(
+      physics: GetPlatform.isMobile
+          ? const BouncingScrollPhysics()
+          : const NeverScrollableScrollPhysics(),
+      controller: controller,
+      clipBehavior: Clip.none,
+      padding: const EdgeInsets.only(top: 100),
+      child: Column(
+        children: [
+          Align(
+            alignment: Alignment.topCenter,
+            child: Wrap(
+              children: const [
+                SizedBox(
+                  width: 600,
+                  child: AnimationConfiguration.staggeredList(
+                    position: 1,
+                    duration: Duration(milliseconds: 1000),
+                    delay: Duration(milliseconds: 1000),
+                    child: SlideAnimation(
+                      horizontalOffset: -100,
+                      verticalOffset: 50,
+                      child: FadeInAnimation(
+                        child: DescriptionContent(),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 600,
+                  child: AnimationConfiguration.staggeredList(
+                    position: 1,
+                    duration: Duration(milliseconds: 1000),
+                    delay: Duration(milliseconds: 1000),
+                    child: SlideAnimation(
+                      horizontalOffset: 100,
+                      verticalOffset: 50,
+                      child: FadeInAnimation(
+                        child: SkillsContent(),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            height: 2000,
+          ),
+        ],
       ),
     );
   }
