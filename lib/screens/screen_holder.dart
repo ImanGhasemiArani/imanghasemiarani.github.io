@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import '../assets/assets.gen.dart';
 import '../assets/strs.dart';
@@ -23,6 +24,7 @@ class ScreenHolder extends StatelessWidget {
               body: Center(
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
+                  clipBehavior: Clip.none,
                   child: Column(
                     children: [
                       Align(
@@ -31,11 +33,33 @@ class ScreenHolder extends StatelessWidget {
                           children: const [
                             SizedBox(
                               width: 600,
-                              child: DescriptionContent(),
+                              child: AnimationConfiguration.staggeredList(
+                                position: 1,
+                                duration: Duration(milliseconds: 1000),
+                                delay: Duration(milliseconds: 1000),
+                                child: SlideAnimation(
+                                  horizontalOffset: -100,
+                                  verticalOffset: 50,
+                                  child: FadeInAnimation(
+                                    child: DescriptionContent(),
+                                  ),
+                                ),
+                              ),
                             ),
                             SizedBox(
                               width: 600,
-                              child: SkillsContent(),
+                              child: AnimationConfiguration.staggeredList(
+                                position: 1,
+                                duration: Duration(milliseconds: 1000),
+                                delay: Duration(milliseconds: 1000),
+                                child: SlideAnimation(
+                                  horizontalOffset: 100,
+                                  verticalOffset: 50,
+                                  child: FadeInAnimation(
+                                    child: SkillsContent(),
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),

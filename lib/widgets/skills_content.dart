@@ -1,5 +1,6 @@
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../assets/assets.gen.dart';
 import '../assets/strs.dart';
@@ -9,29 +10,36 @@ class SkillsContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isShowAnimation = false.obs;
+    Future.delayed(const Duration(milliseconds: 500), () {
+      isShowAnimation.value = true;
+    });
     return Padding(
       padding: const EdgeInsets.all(50),
       child: Align(
         alignment: Alignment.centerRight,
         child: Stack(
           children: [
-            AnimatedRotation(
-              duration: const Duration(milliseconds: 500),
-              turns: 1 / 50,
-              alignment: Alignment.bottomCenter,
-              child: Card(
-                margin: EdgeInsets.zero,
-                shape: SmoothRectangleBorder(
-                  borderRadius: SmoothBorderRadius(
-                    cornerRadius: 40,
-                    cornerSmoothing: 1,
+            Obx(
+              () => AnimatedRotation(
+                duration: const Duration(milliseconds: 2000),
+                turns: isShowAnimation.value ? 1 / 50 : 0,
+                curve: Curves.elasticInOut,
+                alignment: Alignment.bottomCenter,
+                child: Card(
+                  margin: EdgeInsets.zero,
+                  shape: SmoothRectangleBorder(
+                    borderRadius: SmoothBorderRadius(
+                      cornerRadius: 40,
+                      cornerSmoothing: 1,
+                    ),
                   ),
-                ),
-                color: Colors.white.withOpacity(0.5),
-                surfaceTintColor: Colors.white.withOpacity(0.5),
-                child: const SizedBox(
-                  width: 400,
-                  height: 400,
+                  color: Colors.white.withOpacity(0.5),
+                  surfaceTintColor: Colors.white.withOpacity(0.5),
+                  child: const SizedBox(
+                    width: 400,
+                    height: 400,
+                  ),
                 ),
               ),
             ),
