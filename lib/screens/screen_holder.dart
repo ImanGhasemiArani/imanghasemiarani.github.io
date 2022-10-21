@@ -18,30 +18,41 @@ class ScreenHolder extends HookWidget {
   Widget build(BuildContext context) {
     final controller = GetPlatform.isMobile ? null : useScrollController();
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(top: 50, left: 50, right: 50),
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 1200),
-            child: Scaffold(
-              appBar: _buildAppBar(context),
-              body: Center(
-                child: ScrollConfiguration(
-                  behavior: ScrollConfiguration.of(context)
-                      .copyWith(scrollbars: false),
-                  child: GetPlatform.isMobile
-                      ? _buildScrollView(controller)
-                      : SmoothScrollWeb(
-                          controller: controller,
-                          scrollAnimationLength: 600,
-                          curve: Curves.decelerate,
-                          child: _buildScrollView(controller),
-                        ),
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 50, left: 50, right: 50),
+            child: Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 1200),
+                child: Scaffold(
+                  extendBodyBehindAppBar: true,
+                  appBar: _buildAppBar(context),
+                  body: Center(
+                    child: ScrollConfiguration(
+                      behavior: ScrollConfiguration.of(context)
+                          .copyWith(scrollbars: false),
+                      child: GetPlatform.isMobile
+                          ? _buildScrollView(controller)
+                          : SmoothScrollWeb(
+                              controller: controller,
+                              scrollAnimationLength: 600,
+                              curve: Curves.decelerate,
+                              child: _buildScrollView(controller),
+                            ),
+                    ),
+                  ),
                 ),
               ),
             ),
           ),
-        ),
+          Container(
+            alignment: Alignment.topCenter,
+            width: double.infinity,
+            height: 50,
+            color: Theme.of(context).scaffoldBackgroundColor,
+          )
+        ],
       ),
     );
   }
@@ -53,45 +64,12 @@ class ScreenHolder extends HookWidget {
           : const NeverScrollableScrollPhysics(),
       controller: controller,
       clipBehavior: Clip.none,
-      padding: const EdgeInsets.only(top: 100),
+      padding: const EdgeInsets.only(top: 200),
       child: Column(
         children: [
-          Align(
-            alignment: Alignment.topCenter,
-            child: Wrap(
-              children: const [
-                SizedBox(
-                  width: 600,
-                  child: AnimationConfiguration.staggeredList(
-                    position: 1,
-                    duration: Duration(milliseconds: 1000),
-                    delay: Duration(milliseconds: 1000),
-                    child: SlideAnimation(
-                      horizontalOffset: -100,
-                      verticalOffset: 50,
-                      child: FadeInAnimation(
-                        child: DescriptionContent(),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 600,
-                  child: AnimationConfiguration.staggeredList(
-                    position: 1,
-                    duration: Duration(milliseconds: 1000),
-                    delay: Duration(milliseconds: 1000),
-                    child: SlideAnimation(
-                      horizontalOffset: 100,
-                      verticalOffset: 50,
-                      child: FadeInAnimation(
-                        child: SkillsContent(),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          const Align(
+            alignment: Alignment.center,
+            child: HomeContent(),
           ),
           Container(
             height: 2000,
@@ -104,7 +82,7 @@ class ScreenHolder extends HookWidget {
   MyAppBar _buildAppBar(BuildContext context) {
     return MyAppBar(
       automaticallyImplyLeading: false,
-      //   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       title: NavBar(items: [
         NavBarItem(
           label: Strs.educationStr,
@@ -167,6 +145,50 @@ class ScreenHolder extends HookWidget {
           ),
         ),
       ]),
+    );
+  }
+}
+
+class HomeContent extends StatelessWidget {
+  const HomeContent({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      children: const [
+        SizedBox(
+          width: 600,
+          child: AnimationConfiguration.staggeredList(
+            position: 1,
+            duration: Duration(milliseconds: 1000),
+            delay: Duration(milliseconds: 1000),
+            child: SlideAnimation(
+              horizontalOffset: -100,
+              verticalOffset: 50,
+              child: FadeInAnimation(
+                child: DescriptionContent(),
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          width: 600,
+          child: AnimationConfiguration.staggeredList(
+            position: 1,
+            duration: Duration(milliseconds: 1000),
+            delay: Duration(milliseconds: 1000),
+            child: SlideAnimation(
+              horizontalOffset: 100,
+              verticalOffset: 50,
+              child: FadeInAnimation(
+                child: SkillsContent(),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

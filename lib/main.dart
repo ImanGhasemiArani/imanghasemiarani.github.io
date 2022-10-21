@@ -44,13 +44,13 @@ class ScreenApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Theme.of(context).brightness == Brightness.dark;
-
-    return FutureBuilder(
-      future: setupServices(),
-      builder: (context, snapshot) {
-        return const ScreenSplash();
-      },
-    );
+    return const ScreenSplash();
+    // return FutureBuilder(
+    //   future: setupServices(),
+    //   builder: (context, snapshot) {
+    //     return const ScreenSplash();
+    //   },
+    // );
   }
 }
 

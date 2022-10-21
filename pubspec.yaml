@@ -44,6 +44,7 @@ dependencies:
   flutter_native_splash: ^2.2.11
   smooth_scroll_web: ^0.0.4
   flutter_hooks: ^0.18.5+1
+  responsive_framework: ^0.2.0
 
 dev_dependencies:
   flutter_test:
