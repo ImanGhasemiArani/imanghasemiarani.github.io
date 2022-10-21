@@ -30,8 +30,8 @@ class ScreenSplash extends StatelessWidget {
           () => AnimatedContainer(
             duration: const Duration(milliseconds: 500),
             curve: Curves.ease,
-            width: isShowAnimation.value ? Get.width : imageSize,
-            height: isShowAnimation.value ? Get.height : imageSize,
+            width: isShowAnimation.value ? Get.width + 200 : imageSize,
+            height: isShowAnimation.value ? Get.height + 200 : imageSize,
             decoration: BoxDecoration(
               color: Theme.of(context).scaffoldBackgroundColor,
               borderRadius:

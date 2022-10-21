@@ -21,7 +21,7 @@ class ScreenHolder extends HookWidget {
       body: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 50, left: 50, right: 50),
+            padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
             child: Center(
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 1200),
@@ -157,6 +157,7 @@ class HomeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
+      alignment: WrapAlignment.center,
       children: const [
         SizedBox(
           width: 600,

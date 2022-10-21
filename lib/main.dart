@@ -1,11 +1,11 @@
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 import 'init_base_services.dart';
 import 'assets/strs.dart';
 import 'screens/screen_splash.dart';
-import 'services/service_locator.dart';
 
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -25,16 +25,28 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Builder(builder: (context) {
-      return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        themeMode: ThemeMode.dark,
-        theme: Themes.lightTheme,
-        darkTheme: Themes.darkTheme,
-        title: Strs.appTitle.tr,
-        home: const ScreenApp(),
-      );
-    });
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.dark,
+      theme: Themes.lightTheme,
+      darkTheme: Themes.darkTheme,
+      title: Strs.appTitle.tr,
+      home: const ScreenApp(),
+      builder: (context, child) => ResponsiveWrapper.builder(
+        ClampingScrollWrapper.builder(context, child!),
+        maxWidth: 2480,
+        minWidth: 480,
+        defaultScale: true,
+        defaultName: DESKTOP,
+        backgroundColor: const Color(0xff18169F),
+        breakpoints: [
+          const ResponsiveBreakpoint.autoScale(480, name: MOBILE),
+          const ResponsiveBreakpoint.resize(600, name: MOBILE),
+          const ResponsiveBreakpoint.resize(850, name: TABLET),
+          const ResponsiveBreakpoint.resize(1080, name: DESKTOP),
+        ],
+      ),
+    );
   }
 }
 
