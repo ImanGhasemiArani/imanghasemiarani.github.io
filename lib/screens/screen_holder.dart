@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:smooth_scroll_web/smooth_scroll_web.dart';
 
 import '../assets/assets.gen.dart';
 import '../assets/strs.dart';
@@ -10,12 +8,11 @@ import '../widgets/my_app_bar/my_app_bar.dart';
 import '../widgets/nav_bar/nav_bar.dart';
 import '../widgets/skills_content.dart';
 
-class ScreenHolder extends HookWidget {
+class ScreenHolder extends StatelessWidget {
   const ScreenHolder({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = useScrollController();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(top: 50, left: 50, right: 50),
@@ -28,59 +25,53 @@ class ScreenHolder extends HookWidget {
                 child: ScrollConfiguration(
                   behavior: ScrollConfiguration.of(context)
                       .copyWith(scrollbars: false),
-                  child: SmoothScrollWeb(
-                    controller: controller,
-                    curve: Curves.decelerate,
-                    scrollAnimationLength: 600,
-                    child: SingleChildScrollView(
-                      physics: const NeverScrollableScrollPhysics(),
-                      controller: controller,
-                      clipBehavior: Clip.none,
-                      padding: const EdgeInsets.only(top: 100),
-                      child: Column(
-                        children: [
-                          Align(
-                            alignment: Alignment.topCenter,
-                            child: Wrap(
-                              children: const [
-                                SizedBox(
-                                  width: 600,
-                                  child: AnimationConfiguration.staggeredList(
-                                    position: 1,
-                                    duration: Duration(milliseconds: 1000),
-                                    delay: Duration(milliseconds: 1000),
-                                    child: SlideAnimation(
-                                      horizontalOffset: -100,
-                                      verticalOffset: 50,
-                                      child: FadeInAnimation(
-                                        child: DescriptionContent(),
-                                      ),
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    clipBehavior: Clip.none,
+                    padding: const EdgeInsets.only(top: 100),
+                    child: Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: Wrap(
+                            children: const [
+                              SizedBox(
+                                width: 600,
+                                child: AnimationConfiguration.staggeredList(
+                                  position: 1,
+                                  duration: Duration(milliseconds: 1000),
+                                  delay: Duration(milliseconds: 1000),
+                                  child: SlideAnimation(
+                                    horizontalOffset: -100,
+                                    verticalOffset: 50,
+                                    child: FadeInAnimation(
+                                      child: DescriptionContent(),
                                     ),
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 600,
-                                  child: AnimationConfiguration.staggeredList(
-                                    position: 1,
-                                    duration: Duration(milliseconds: 1000),
-                                    delay: Duration(milliseconds: 1000),
-                                    child: SlideAnimation(
-                                      horizontalOffset: 100,
-                                      verticalOffset: 50,
-                                      child: FadeInAnimation(
-                                        child: SkillsContent(),
-                                      ),
+                              ),
+                              SizedBox(
+                                width: 600,
+                                child: AnimationConfiguration.staggeredList(
+                                  position: 1,
+                                  duration: Duration(milliseconds: 1000),
+                                  delay: Duration(milliseconds: 1000),
+                                  child: SlideAnimation(
+                                    horizontalOffset: 100,
+                                    verticalOffset: 50,
+                                    child: FadeInAnimation(
+                                      child: SkillsContent(),
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                          Container(
-                            height: 2000,
-                          ),
-                        ],
-                      ),
+                        ),
+                        Container(
+                          height: 2000,
+                        ),
+                      ],
                     ),
                   ),
                 ),
