@@ -83,7 +83,7 @@ class NavBarItem extends StatelessWidget {
           child: CupertinoButton(
             minSize: 0,
             padding: EdgeInsets.zero,
-            onPressed: onPressed,
+            onPressed: onPressed ?? () {},
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
