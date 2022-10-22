@@ -67,33 +67,12 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/logo.png
-  AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
-
-  /// File path: assets/images/original.png
-  AssetGenImage get original =>
-      const AssetGenImage('assets/images/original.png');
-
-  /// File path: assets/images/original_circle.png
-  AssetGenImage get originalCircle =>
-      const AssetGenImage('assets/images/original_circle.png');
-
-  /// File path: assets/images/original_circle_blue.png
-  AssetGenImage get originalCircleBlue =>
-      const AssetGenImage('assets/images/original_circle_blue.png');
-
   /// File path: assets/images/original_circle_transparent.png
   AssetGenImage get originalCircleTransparent =>
       const AssetGenImage('assets/images/original_circle_transparent.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [
-        logo,
-        original,
-        originalCircle,
-        originalCircleBlue,
-        originalCircleTransparent
-      ];
+  List<AssetGenImage> get values => [originalCircleTransparent];
 }
 
 class Assets {

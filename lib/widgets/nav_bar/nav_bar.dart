@@ -15,6 +15,59 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return LayoutBuilder(builder: (context, boxConstraints) {
+      if (boxConstraints.maxWidth < 800) {
+        return Row(
+          textDirection: TextDirection.rtl,
+          children: [
+            ...List.generate(items.length * 2 - 1, (index) {
+              if (index.isEven) {
+                return NavBarItem(
+                  icon: items[index / 2 as int].icon,
+                  selectedIcon: items[index / 2 as int].selectedIcon,
+                );
+              } else {
+                return const SizedBox(width: 30);
+              }
+            }),
+            const Spacer(),
+            Container(
+              decoration: ShapeDecoration(
+                color: const Color(0xff95CEC8),
+                shape: SmoothRectangleBorder(
+                  borderRadius: SmoothBorderRadius(
+                    cornerRadius: 10,
+                    cornerSmoothing: 1,
+                  ),
+                ),
+              ),
+              child: Hero(
+                tag: 'logo',
+                child: Assets.images.originalCircleTransparent.image(
+                  height: 40,
+                  width: 40,
+                ),
+              ),
+            ),
+          ],
+        );
+      } else {
+        return LargeScreenNavBar(items: items);
+      }
+    });
+  }
+}
+
+class LargeScreenNavBar extends StatelessWidget {
+  const LargeScreenNavBar({
+    Key? key,
+    required this.items,
+  }) : super(key: key);
+
+  final List<NavBarItem> items;
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       textDirection: TextDirection.rtl,
       children: [
@@ -52,13 +105,13 @@ class NavBar extends StatelessWidget {
 class NavBarItem extends StatelessWidget {
   const NavBarItem({
     Key? key,
-    required this.label,
+    this.label,
     this.onPressed,
     required this.icon,
     required this.selectedIcon,
   }) : super(key: key);
 
-  final String label;
+  final String? label;
   final Widget icon;
   final Widget selectedIcon;
   final VoidCallback? onPressed;
@@ -66,63 +119,183 @@ class NavBarItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final showAnimation = false.obs;
-    final maxWidth =
-        _textSize(label, Theme.of(context).textTheme.titleMedium).width;
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        MouseRegion(
-          onHover: (event) {
-            showAnimation.value = true;
-          },
-          onExit: (event) {
-            showAnimation.value = false;
-          },
-          child: CupertinoButton(
-            minSize: 0,
-            padding: EdgeInsets.zero,
-            onPressed: onPressed ?? () {},
-            child: Row(
+    if (label != null) {
+      final maxWidth =
+          _textSize(label!, Theme.of(context).textTheme.titleMedium).width;
+      return GetPlatform.isDesktop
+          ? Column(
               mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Obx(
-                  () => AnimatedRotation(
-                    duration: const Duration(milliseconds: 400),
-                    turns: showAnimation.value ? 1 : 0,
-                    child: AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 400),
-                      child: showAnimation.value ? selectedIcon : icon,
+                MouseRegion(
+                  onHover: (event) {
+                    showAnimation.value = true;
+                  },
+                  onExit: (event) {
+                    showAnimation.value = false;
+                  },
+                  child: CupertinoButton(
+                    minSize: 0,
+                    padding: EdgeInsets.zero,
+                    onPressed: () {
+                      onPressed?.call();
+                    },
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Obx(
+                          () => AnimatedRotation(
+                            duration: const Duration(milliseconds: 400),
+                            turns: showAnimation.value ? 1 : 0,
+                            child: AnimatedSwitcher(
+                              duration: const Duration(milliseconds: 400),
+                              child: showAnimation.value ? selectedIcon : icon,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 5),
+                        Text(
+                          label!,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        )
+                      ],
                     ),
                   ),
                 ),
-                const SizedBox(width: 5),
-                Text(
-                  label,
-                  style: Theme.of(context).textTheme.titleMedium,
+                Obx(
+                  () {
+                    return AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primary,
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      alignment: Alignment.centerRight,
+                      height: 2,
+                      width: showAnimation.value ? double.infinity : 0,
+                      constraints: BoxConstraints(maxWidth: maxWidth),
+                    );
+                  },
                 ),
               ],
-            ),
-          ),
-        ),
-        Obx(
-          () {
-            return AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
-                borderRadius: BorderRadius.circular(100),
-              ),
-              alignment: Alignment.centerRight,
-              height: 2,
-              width: showAnimation.value ? double.infinity : 0,
-              constraints: BoxConstraints(maxWidth: maxWidth),
+            )
+          : Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                CupertinoButton(
+                  minSize: 0,
+                  padding: EdgeInsets.zero,
+                  onPressed: () {
+                    showAnimation.value = true;
+                    onPressed?.call();
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Obx(
+                        () => AnimatedRotation(
+                          onEnd: () {
+                            showAnimation.value = false;
+                          },
+                          duration: const Duration(milliseconds: 400),
+                          turns: showAnimation.value ? 1 : 0,
+                          child: AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 400),
+                            child: showAnimation.value ? selectedIcon : icon,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        label!,
+                        style: Theme.of(context).textTheme.titleMedium,
+                      )
+                    ],
+                  ),
+                ),
+                Obx(
+                  () {
+                    return AnimatedContainer(
+                      onEnd: () {
+                        showAnimation.value = false;
+                      },
+                      duration: const Duration(milliseconds: 200),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primary,
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      alignment: Alignment.centerRight,
+                      height: 2,
+                      width: showAnimation.value ? double.infinity : 0,
+                      constraints: BoxConstraints(maxWidth: maxWidth),
+                    );
+                  },
+                ),
+              ],
             );
-          },
-        ),
-      ],
-    );
+    } else {
+      return GetPlatform.isDesktop
+          ? MouseRegion(
+              onHover: (event) {
+                showAnimation.value = true;
+              },
+              onExit: (event) {
+                showAnimation.value = false;
+              },
+              child: CupertinoButton(
+                minSize: 0,
+                padding: EdgeInsets.zero,
+                onPressed: () {
+                  onPressed?.call();
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Obx(
+                      () => AnimatedRotation(
+                        duration: const Duration(milliseconds: 400),
+                        turns: showAnimation.value ? 1 : 0,
+                        child: AnimatedSwitcher(
+                          duration: const Duration(milliseconds: 400),
+                          child: showAnimation.value ? selectedIcon : icon,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          : CupertinoButton(
+              minSize: 0,
+              padding: EdgeInsets.zero,
+              onPressed: () {
+                showAnimation.value = true;
+
+                onPressed?.call();
+              },
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Obx(
+                    () => AnimatedRotation(
+                      onEnd: () {
+                        showAnimation.value = false;
+                      },
+                      duration: const Duration(milliseconds: 400),
+                      turns: showAnimation.value ? 1 : 0,
+                      child: AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 400),
+                        child: showAnimation.value ? selectedIcon : icon,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+    }
   }
 
   Size _textSize(

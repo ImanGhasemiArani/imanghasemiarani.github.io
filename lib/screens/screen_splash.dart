@@ -10,7 +10,7 @@ class ScreenSplash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const imageSize = 512 / 4;
-    Future.delayed(const Duration(milliseconds: 600), () {
+    Future.delayed(const Duration(milliseconds: 1100), () {
       Get.off(
         () => const ScreenHolder(),
         duration: const Duration(milliseconds: 1500),
@@ -19,7 +19,7 @@ class ScreenSplash extends StatelessWidget {
     });
 
     final isShowAnimation = false.obs;
-    Future.delayed(const Duration(milliseconds: 0), () {
+    Future.delayed(const Duration(milliseconds: 500), () {
       isShowAnimation.value = true;
     });
 

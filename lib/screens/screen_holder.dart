@@ -16,43 +16,130 @@ class ScreenHolder extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = GetPlatform.isMobile ? null : useScrollController();
+    final controller = GetPlatform.isDesktop ? useScrollController() : null;
     return Scaffold(
-      body: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
-            child: Center(
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 1200),
-                child: Scaffold(
-                  extendBodyBehindAppBar: true,
-                  appBar: _buildAppBar(context),
-                  body: Center(
-                    child: ScrollConfiguration(
-                      behavior: ScrollConfiguration.of(context)
-                          .copyWith(scrollbars: false),
-                      child: GetPlatform.isMobile
-                          ? _buildScrollView(controller)
-                          : SmoothScrollWeb(
-                              controller: controller,
-                              scrollAnimationLength: 600,
-                              curve: Curves.decelerate,
-                              child: _buildScrollView(controller),
-                            ),
-                    ),
-                  ),
-                ),
-              ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Center(
+          child: Scaffold(
+            extendBodyBehindAppBar: true,
+            appBar: _buildAppBar(context),
+            body: BodyContent(controller: controller),
+          ),
+        ),
+      ),
+    );
+  }
+
+  MyAppBar _buildAppBar(BuildContext context) {
+    return MyAppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      toolbarHeight:
+          GetPlatform.isMobile ? kToolbarHeight : kToolbarHeight + 50,
+      centerTitle: true,
+      title: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 1200),
+        child: Padding(
+          padding: EdgeInsets.only(top: GetPlatform.isMobile ? 0 : 50),
+          child: SizedBox(
+            height: kToolbarHeight,
+            child: NavBar(
+              items: _getNavBarItems(context),
             ),
           ),
-          Container(
-            alignment: Alignment.topCenter,
-            width: double.infinity,
-            height: 50,
-            color: Theme.of(context).scaffoldBackgroundColor,
-          )
-        ],
+        ),
+      ),
+    );
+  }
+
+  List<NavBarItem> _getNavBarItems(BuildContext context) {
+    return [
+      NavBarItem(
+        label: Strs.educationStr,
+        icon: Assets.icons.teacherTwoTone.svg(
+          key: const ValueKey<bool>(false),
+          color: Theme.of(context).colorScheme.primary,
+          placeholderBuilder: (context) =>
+              const SizedBox(width: 24, height: 24),
+        ),
+        selectedIcon: Assets.icons.teacherBulk.svg(
+          key: const ValueKey<bool>(true),
+          color: Theme.of(context).colorScheme.primary,
+          placeholderBuilder: (context) =>
+              const SizedBox(width: 24, height: 24),
+        ),
+      ),
+      NavBarItem(
+        label: Strs.personalProjectsStr,
+        icon: Assets.icons.code1TwoTone.svg(
+          key: const ValueKey<bool>(false),
+          color: Theme.of(context).colorScheme.primary,
+          placeholderBuilder: (context) =>
+              const SizedBox(width: 24, height: 24),
+        ),
+        selectedIcon: Assets.icons.code1Bulk.svg(
+          key: const ValueKey<bool>(true),
+          color: Theme.of(context).colorScheme.primary,
+          placeholderBuilder: (context) =>
+              const SizedBox(width: 24, height: 24),
+        ),
+      ),
+      NavBarItem(
+        label: Strs.workExperienceStr,
+        icon: Assets.icons.brifecaseTimerTwoTone.svg(
+          key: const ValueKey<bool>(false),
+          color: Theme.of(context).colorScheme.primary,
+          placeholderBuilder: (context) =>
+              const SizedBox(width: 24, height: 24),
+        ),
+        selectedIcon: Assets.icons.brifecaseTimerBulk.svg(
+          key: const ValueKey<bool>(true),
+          color: Theme.of(context).colorScheme.primary,
+          placeholderBuilder: (context) =>
+              const SizedBox(width: 24, height: 24),
+        ),
+      ),
+      NavBarItem(
+        label: Strs.homeStr,
+        icon: Assets.icons.home1TwoTone.svg(
+          key: const ValueKey<bool>(false),
+          color: Theme.of(context).colorScheme.primary,
+          placeholderBuilder: (context) =>
+              const SizedBox(width: 24, height: 24),
+        ),
+        selectedIcon: Assets.icons.home1Bulk.svg(
+          key: const ValueKey<bool>(true),
+          color: Theme.of(context).colorScheme.primary,
+          placeholderBuilder: (context) =>
+              const SizedBox(width: 24, height: 24),
+        ),
+      ),
+    ];
+  }
+}
+
+class BodyContent extends StatelessWidget {
+  const BodyContent({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  final ScrollController? controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ScrollConfiguration(
+        behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+        child: GetPlatform.isMobile
+            ? _buildScrollView(controller)
+            : SmoothScrollWeb(
+                controller: controller,
+                scrollAnimationLength: 600,
+                curve: Curves.decelerate,
+                child: _buildScrollView(controller),
+              ),
       ),
     );
   }
@@ -67,84 +154,12 @@ class ScreenHolder extends HookWidget {
       padding: const EdgeInsets.only(top: 200),
       child: Column(
         children: [
-          const Align(
-            alignment: Alignment.center,
-            child: HomeContent(),
-          ),
+          const HomeContent(),
           Container(
             height: 2000,
           ),
         ],
       ),
-    );
-  }
-
-  MyAppBar _buildAppBar(BuildContext context) {
-    return MyAppBar(
-      automaticallyImplyLeading: false,
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      title: NavBar(items: [
-        NavBarItem(
-          label: Strs.educationStr,
-          icon: Assets.icons.teacherTwoTone.svg(
-            key: const ValueKey<bool>(false),
-            color: Theme.of(context).colorScheme.primary,
-            placeholderBuilder: (context) =>
-                const SizedBox(width: 24, height: 24),
-          ),
-          selectedIcon: Assets.icons.teacherBulk.svg(
-            key: const ValueKey<bool>(true),
-            color: Theme.of(context).colorScheme.primary,
-            placeholderBuilder: (context) =>
-                const SizedBox(width: 24, height: 24),
-          ),
-        ),
-        NavBarItem(
-          label: Strs.personalProjectsStr,
-          icon: Assets.icons.code1TwoTone.svg(
-            key: const ValueKey<bool>(false),
-            color: Theme.of(context).colorScheme.primary,
-            placeholderBuilder: (context) =>
-                const SizedBox(width: 24, height: 24),
-          ),
-          selectedIcon: Assets.icons.code1Bulk.svg(
-            key: const ValueKey<bool>(true),
-            color: Theme.of(context).colorScheme.primary,
-            placeholderBuilder: (context) =>
-                const SizedBox(width: 24, height: 24),
-          ),
-        ),
-        NavBarItem(
-          label: Strs.workExperienceStr,
-          icon: Assets.icons.brifecaseTimerTwoTone.svg(
-            key: const ValueKey<bool>(false),
-            color: Theme.of(context).colorScheme.primary,
-            placeholderBuilder: (context) =>
-                const SizedBox(width: 24, height: 24),
-          ),
-          selectedIcon: Assets.icons.brifecaseTimerBulk.svg(
-            key: const ValueKey<bool>(true),
-            color: Theme.of(context).colorScheme.primary,
-            placeholderBuilder: (context) =>
-                const SizedBox(width: 24, height: 24),
-          ),
-        ),
-        NavBarItem(
-          label: Strs.homeStr,
-          icon: Assets.icons.home1TwoTone.svg(
-            key: const ValueKey<bool>(false),
-            color: Theme.of(context).colorScheme.primary,
-            placeholderBuilder: (context) =>
-                const SizedBox(width: 24, height: 24),
-          ),
-          selectedIcon: Assets.icons.home1Bulk.svg(
-            key: const ValueKey<bool>(true),
-            color: Theme.of(context).colorScheme.primary,
-            placeholderBuilder: (context) =>
-                const SizedBox(width: 24, height: 24),
-          ),
-        ),
-      ]),
     );
   }
 }
@@ -158,34 +173,30 @@ class HomeContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       alignment: WrapAlignment.center,
+      runAlignment: WrapAlignment.spaceBetween,
+      runSpacing: 50,
       children: const [
-        SizedBox(
-          width: 600,
-          child: AnimationConfiguration.staggeredList(
-            position: 1,
-            duration: Duration(milliseconds: 1000),
-            delay: Duration(milliseconds: 1000),
-            child: SlideAnimation(
-              horizontalOffset: -100,
-              verticalOffset: 50,
-              child: FadeInAnimation(
-                child: DescriptionContent(),
-              ),
+        AnimationConfiguration.staggeredList(
+          position: 1,
+          duration: Duration(milliseconds: 1000),
+          delay: Duration(milliseconds: 1000),
+          child: SlideAnimation(
+            horizontalOffset: -100,
+            verticalOffset: 50,
+            child: FadeInAnimation(
+              child: DescriptionContent(),
             ),
           ),
         ),
-        SizedBox(
-          width: 600,
-          child: AnimationConfiguration.staggeredList(
-            position: 1,
-            duration: Duration(milliseconds: 1000),
-            delay: Duration(milliseconds: 1000),
-            child: SlideAnimation(
-              horizontalOffset: 100,
-              verticalOffset: 50,
-              child: FadeInAnimation(
-                child: SkillsContent(),
-              ),
+        AnimationConfiguration.staggeredList(
+          position: 1,
+          duration: Duration(milliseconds: 1000),
+          delay: Duration(milliseconds: 1000),
+          child: SlideAnimation(
+            horizontalOffset: 100,
+            verticalOffset: 50,
+            child: FadeInAnimation(
+              child: SkillsContent(),
             ),
           ),
         ),
