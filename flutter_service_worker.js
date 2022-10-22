@@ -3,7 +3,7 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "assets/AssetManifest.json": "f5fffef9e594eff2f44c70fdbc239778",
+  "assets/AssetManifest.json": "cbdfdf6e778782bef75bc31202c218f4",
 "assets/assets/icons/brifecase-timer-bulk.svg": "522f6417a6647645f0b7ef3e08cd51da",
 "assets/assets/icons/brifecase-timer-twoTone.svg": "60bcc0bd74d00a255b62e0e93e8df828",
 "assets/assets/icons/code-1-bulk.svg": "b72a4b264f8f4ca90db5df2874b1597d",
@@ -13,10 +13,6 @@ const RESOURCES = {
 "assets/assets/icons/home-1-twoTone.svg": "16c0834d4b2935c542ed5c3f6282ed56",
 "assets/assets/icons/teacher-bulk.svg": "89cecd45e20dcd891f95b45e2aadfd3c",
 "assets/assets/icons/teacher-twoTone.svg": "5e83c5afcb7fdd5e18881a3d6813ab7d",
-"assets/assets/images/logo.png": "c96ac35c29de30109b5a451922d2fe63",
-"assets/assets/images/original.png": "5829508cc0e7171708a03f30cbd92360",
-"assets/assets/images/original_circle.png": "726cd5b027deffdab101cc62a2865896",
-"assets/assets/images/original_circle_blue.png": "60314e4383c565ac96c80b217d277be1",
 "assets/assets/images/original_circle_transparent.png": "a10fa356046486c2a2a695e2846d0041",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
 "assets/fonts/MaterialIcons-Regular.otf": "95db9098c58fd6db106f1116bae85a0b",
@@ -33,9 +29,9 @@ const RESOURCES = {
 "icons/Icon-512.png": "b4cb27e260ec9b6610e16de58601e894",
 "icons/Icon-maskable-192.png": "e425d1ce656c92682bdb294fc7731dd1",
 "icons/Icon-maskable-512.png": "b4cb27e260ec9b6610e16de58601e894",
-"index.html": "394fcb69a0574151462b1b58ed3d447d",
-"/": "394fcb69a0574151462b1b58ed3d447d",
-"main.dart.js": "93f4982211d4ea3702d92b8439459a8d",
+"index.html": "bcc2c30fd97301f957a3da4b92fdf9b3",
+"/": "bcc2c30fd97301f957a3da4b92fdf9b3",
+"main.dart.js": "a4c1fa7b5e6d0f10c427dd9285737441",
 "manifest.json": "23a31f8745f444aded6ba36ae4f8be3c",
 "splash/img/dark-1x.png": "64d254978522e52d5ca5bbaecc8d1f83",
 "splash/img/dark-2x.png": "be2791da0ce9b79daa6334d3a477c249",
