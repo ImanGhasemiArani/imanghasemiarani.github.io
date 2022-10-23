@@ -25,6 +25,7 @@ class NavBar extends StatelessWidget {
                 return NavBarItem(
                   icon: items[index / 2 as int].icon,
                   selectedIcon: items[index / 2 as int].selectedIcon,
+                  onPressed: items[index / 2 as int].onPressed,
                 );
               } else {
                 return const SizedBox(width: 30);

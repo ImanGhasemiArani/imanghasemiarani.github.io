@@ -9,19 +9,9 @@ class ScreenSplash extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const imageSize = 512 / 4;
-    Future.delayed(const Duration(milliseconds: 1100), () {
-      Get.off(
-        () => const ScreenHolder(),
-        duration: const Duration(milliseconds: 1500),
-        transition: Transition.fadeIn,
-      );
-    });
-
     final isShowAnimation = false.obs;
-    Future.delayed(const Duration(milliseconds: 500), () {
-      isShowAnimation.value = true;
-    });
+
+    const imageSize = 512 / 4;
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primary,
@@ -41,18 +31,51 @@ class ScreenSplash extends StatelessWidget {
               aspectRatio: 1,
               child: FittedBox(
                 fit: BoxFit.scaleDown,
-                child: Hero(
-                  tag: 'logo',
-                  child: Assets.images.originalCircleTransparent.image(
-                    width: imageSize,
-                    height: imageSize,
-                  ),
-                ),
+                child: FutureBuilder(
+                    future: precacheImage(
+                      Assets.images.originalCircleTransparent
+                          .image(
+                            width: imageSize,
+                            height: imageSize,
+                          )
+                          .image,
+                      context,
+                    ),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        startFutureService(isShowAnimation);
+                        return Hero(
+                          tag: 'logo',
+                          child: Assets.images.originalCircleTransparent.image(
+                            width: imageSize,
+                            height: imageSize,
+                          ),
+                        );
+                      } else {
+                        return const SizedBox(
+                          width: imageSize,
+                          height: imageSize,
+                        );
+                      }
+                    }),
               ),
             ),
           ),
         ),
       ),
     );
+  }
+
+  void startFutureService(RxBool isShowAnimation) {
+    Future.delayed(const Duration(milliseconds: 500), () {
+      isShowAnimation.value = true;
+    });
+    Future.delayed(const Duration(milliseconds: 1100), () {
+      Get.off(
+        () => const ScreenHolder(),
+        duration: const Duration(milliseconds: 1500),
+        transition: Transition.fadeIn,
+      );
+    });
   }
 }
