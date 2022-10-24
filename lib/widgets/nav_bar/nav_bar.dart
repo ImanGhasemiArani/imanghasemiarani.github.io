@@ -23,8 +23,9 @@ class NavBar extends StatelessWidget {
             ...List.generate(items.length * 2 - 1, (index) {
               if (index.isEven) {
                 return NavBarItem(
-                  icon: items[index / 2 as int].icon,
-                  selectedIcon: items[index / 2 as int].selectedIcon,
+                  iconSvgPath: items[index / 2 as int].iconSvgPath,
+                  selectedIconSvgPath:
+                      items[index / 2 as int].selectedIconSvgPath,
                   onPressed: items[index / 2 as int].onPressed,
                 );
               } else {
@@ -108,17 +109,28 @@ class NavBarItem extends StatelessWidget {
     Key? key,
     this.label,
     this.onPressed,
-    required this.icon,
-    required this.selectedIcon,
+    required this.iconSvgPath,
+    required this.selectedIconSvgPath,
   }) : super(key: key);
 
   final String? label;
-  final Widget icon;
-  final Widget selectedIcon;
+  final String iconSvgPath;
+  final String selectedIconSvgPath;
   final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
+    final icon = SvgGenImage(iconSvgPath).svg(
+      key: const ValueKey<bool>(false),
+      color: Theme.of(context).colorScheme.primary,
+      placeholderBuilder: (context) => const SizedBox(width: 24, height: 24),
+    );
+    final selectedIcon = SvgGenImage(selectedIconSvgPath).svg(
+      key: const ValueKey<bool>(true),
+      color: Theme.of(context).colorScheme.primary,
+      placeholderBuilder: (context) => const SizedBox(width: 24, height: 24),
+    );
+    
     final showAnimation = false.obs;
     if (label != null) {
       final maxWidth =
@@ -151,7 +163,9 @@ class NavBarItem extends StatelessWidget {
                             turns: showAnimation.value ? 1 : 0,
                             child: AnimatedSwitcher(
                               duration: const Duration(milliseconds: 400),
-                              child: showAnimation.value ? selectedIcon : icon,
+                              child: showAnimation.value
+                                  ? selectedIcon
+                                  : icon,
                             ),
                           ),
                         ),
@@ -205,7 +219,9 @@ class NavBarItem extends StatelessWidget {
                           turns: showAnimation.value ? 1 : 0,
                           child: AnimatedSwitcher(
                             duration: const Duration(milliseconds: 400),
-                            child: showAnimation.value ? selectedIcon : icon,
+                            child: showAnimation.value
+                                ? selectedIcon
+                                : icon,
                           ),
                         ),
                       ),
@@ -261,7 +277,9 @@ class NavBarItem extends StatelessWidget {
                         turns: showAnimation.value ? 1 : 0,
                         child: AnimatedSwitcher(
                           duration: const Duration(milliseconds: 400),
-                          child: showAnimation.value ? selectedIcon : icon,
+                          child: showAnimation.value
+                              ? selectedIcon
+                              : icon,
                         ),
                       ),
                     ),
@@ -289,7 +307,9 @@ class NavBarItem extends StatelessWidget {
                       turns: showAnimation.value ? 1 : 0,
                       child: AnimatedSwitcher(
                         duration: const Duration(milliseconds: 400),
-                        child: showAnimation.value ? selectedIcon : icon,
+                        child: showAnimation.value
+                            ? selectedIcon
+                            : icon,
                       ),
                     ),
                   ),

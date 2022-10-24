@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
-// import 'package:smooth_scroll_web/smooth_scroll_web.dart';
 
 import '../assets/assets.gen.dart';
 import '../assets/strs.dart';
@@ -13,6 +12,7 @@ import 'project_content.dart';
 import 'working_content.dart';
 
 const maxWidth = 1200.0;
+const horizontalPadding = 20.0;
 final navBarHight = GetPlatform.isMobile ? kToolbarHeight : kToolbarHeight + 50;
 
 ScrollController? controller;
@@ -24,20 +24,17 @@ class ScreenHolder extends HookWidget {
   Widget build(BuildContext context) {
     controller = useScrollController();
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: ScrollConfiguration(
-          behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
-          child: GetPlatform.isMobile
-              ? _buildScrollView(context)
-              : _buildScrollView(context),
-          //   : SmoothScrollWeb(
-          //       controller: controller,
-          //       scrollAnimationLength: 600,
-          //       curve: Curves.decelerate,
-          //       child: _buildScrollView(context),
-          //     ),
-        ),
+      body: ScrollConfiguration(
+        behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+        child: GetPlatform.isMobile
+            ? _buildScrollView(context)
+            : _buildScrollView(context),
+        //   : SmoothScrollWeb(
+        //       controller: controller,
+        //       scrollAnimationLength: 600,
+        //       curve: Curves.decelerate,
+        //       child: _buildScrollView(context),
+        //     ),
       ),
     );
   }
@@ -47,36 +44,22 @@ class ScreenHolder extends HookWidget {
       controller: controller,
       clipBehavior: Clip.none,
       physics: const BouncingScrollPhysics(),
-      //   physics:
-      //       GetPlatform.isMobile ? null : const NeverScrollableScrollPhysics(),
       slivers: [
         _buildAppBar(context),
         SliverToBoxAdapter(child: SizedBox(key: KeyController().homeGK)),
-        SliverToBoxAdapter(
-            child: ConstrainedBox(
-          constraints: BoxConstraints(minHeight: Get.height - navBarHight),
-          child: const Center(child: HomeContent()),
-        )),
+        const SliverToBoxAdapter(
+            child: BuildLayout(child: Center(child: HomeContent()))),
         SliverToBoxAdapter(
             child: SizedBox(key: KeyController().workExperienceGK)),
-        SliverToBoxAdapter(
-            child: ConstrainedBox(
-                constraints:
-                    BoxConstraints(minHeight: Get.height - navBarHight),
-                child: const Center(child: WorkingContent()))),
+        const SliverToBoxAdapter(
+            child: BuildLayout(child: Center(child: WorkingContent()))),
         SliverToBoxAdapter(
             child: SizedBox(key: KeyController().personalProjectsGK)),
-        SliverToBoxAdapter(
-            child: ConstrainedBox(
-                constraints:
-                    BoxConstraints(minHeight: Get.height - navBarHight),
-                child: const Center(child: ProjectContent()))),
+        const SliverToBoxAdapter(
+            child: BuildLayout(child: Center(child: ProjectContent()))),
         SliverToBoxAdapter(child: SizedBox(key: KeyController().educationGK)),
-        SliverToBoxAdapter(
-            child: ConstrainedBox(
-                constraints:
-                    BoxConstraints(minHeight: Get.height - navBarHight),
-                child: const Center(child: EducationContent()))),
+        const SliverToBoxAdapter(
+            child: BuildLayout(child: Center(child: EducationContent()))),
       ],
     );
   }
@@ -91,11 +74,15 @@ class ScreenHolder extends HookWidget {
       title: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: maxWidth),
         child: Padding(
-          padding: EdgeInsets.only(top: navBarHight - kToolbarHeight),
+          padding: EdgeInsets.only(
+            top: navBarHight - kToolbarHeight,
+            left: horizontalPadding,
+            right: horizontalPadding,
+          ),
           child: SizedBox(
             height: kToolbarHeight,
             child: NavBar(
-              items: _getNavBarItems(context),
+              items: _getNavBarItems(),
             ),
           ),
         ),
@@ -103,88 +90,64 @@ class ScreenHolder extends HookWidget {
     );
   }
 
-  List<NavBarItem> _getNavBarItems(BuildContext context) {
+  List<NavBarItem> _getNavBarItems() {
     return [
       NavBarItem(
         label: Strs.educationStr,
-        icon: Assets.icons.teacherTwoTone.svg(
-          key: const ValueKey<bool>(false),
-          color: Theme.of(context).colorScheme.primary,
-          placeholderBuilder: (context) =>
-              const SizedBox(width: 24, height: 24),
-        ),
-        selectedIcon: Assets.icons.teacherBulk.svg(
-          key: const ValueKey<bool>(true),
-          color: Theme.of(context).colorScheme.primary,
-          placeholderBuilder: (context) =>
-              const SizedBox(width: 24, height: 24),
-        ),
+        iconSvgPath: Assets.icons.teacherTwoTone.path,
+        selectedIconSvgPath: Assets.icons.teacherBulk.path,
         onPressed: () => navigateTo(KeyController().educationGK),
       ),
       NavBarItem(
         label: Strs.personalProjectsStr,
-        icon: Assets.icons.code1TwoTone.svg(
-          key: const ValueKey<bool>(false),
-          color: Theme.of(context).colorScheme.primary,
-          placeholderBuilder: (context) =>
-              const SizedBox(width: 24, height: 24),
-        ),
-        selectedIcon: Assets.icons.code1Bulk.svg(
-          key: const ValueKey<bool>(true),
-          color: Theme.of(context).colorScheme.primary,
-          placeholderBuilder: (context) =>
-              const SizedBox(width: 24, height: 24),
-        ),
+        iconSvgPath: Assets.icons.code1TwoTone.path,
+        selectedIconSvgPath: Assets.icons.code1Bulk.path,
         onPressed: () => navigateTo(KeyController().personalProjectsGK),
       ),
       NavBarItem(
         label: Strs.workExperienceStr,
-        icon: Assets.icons.brifecaseTimerTwoTone.svg(
-          key: const ValueKey<bool>(false),
-          color: Theme.of(context).colorScheme.primary,
-          placeholderBuilder: (context) =>
-              const SizedBox(width: 24, height: 24),
-        ),
-        selectedIcon: Assets.icons.brifecaseTimerBulk.svg(
-          key: const ValueKey<bool>(true),
-          color: Theme.of(context).colorScheme.primary,
-          placeholderBuilder: (context) =>
-              const SizedBox(width: 24, height: 24),
-        ),
+        iconSvgPath: Assets.icons.brifecaseTimerTwoTone.path,
+        selectedIconSvgPath: Assets.icons.brifecaseTimerBulk.path,
         onPressed: () => navigateTo(KeyController().workExperienceGK),
       ),
       NavBarItem(
         label: Strs.homeStr,
-        icon: Assets.icons.home1TwoTone.svg(
-          key: const ValueKey<bool>(false),
-          color: Theme.of(context).colorScheme.primary,
-          placeholderBuilder: (context) =>
-              const SizedBox(width: 24, height: 24),
-        ),
-        selectedIcon: Assets.icons.home1Bulk.svg(
-          key: const ValueKey<bool>(true),
-          color: Theme.of(context).colorScheme.primary,
-          placeholderBuilder: (context) =>
-              const SizedBox(width: 24, height: 24),
-        ),
+        iconSvgPath: Assets.icons.home1TwoTone.path,
+        selectedIconSvgPath: Assets.icons.home1Bulk.path,
         onPressed: () => navigateTo(KeyController().homeGK),
       ),
     ];
   }
 
   void navigateTo(GlobalKey key) {
-    final cP = controller?.offset;
-    final sP = (key.currentContext?.findRenderObject() as RenderBox?)
-        ?.localToGlobal(Offset(0, cP! - navBarHight))
-        .dy;
-    if (sP != null && cP != null) {
-      final animTime = (sP - cP).abs() * 0.8;
-      controller?.animateTo(
-        sP,
-        duration: Duration(milliseconds: animTime.toInt()),
-        curve: Curves.ease,
-      );
-    }
+    if (key.currentContext == null) return;
+    Scrollable.ensureVisible(
+      key.currentContext!,
+      curve: Curves.ease,
+      duration: const Duration(milliseconds: 1000),
+    );
+  }
+}
+
+class BuildLayout extends StatelessWidget {
+  const BuildLayout({super.key, required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: horizontalPadding),
+      child: LayoutBuilder(builder: (context, constraints) {
+        return ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: maxWidth,
+            minHeight: Get.height - navBarHight,
+          ),
+          child: child,
+        );
+      }),
+    );
   }
 }
 
