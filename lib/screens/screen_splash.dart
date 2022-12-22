@@ -1,7 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../assets/assets.gen.dart';
+import '../assets/assets.url.dart';
 import 'screen_holder.dart';
 
 class ScreenSplash extends StatelessWidget {
@@ -33,12 +34,7 @@ class ScreenSplash extends StatelessWidget {
                 fit: BoxFit.scaleDown,
                 child: FutureBuilder(
                     future: precacheImage(
-                      Assets.images.originalCircleTransparent
-                          .image(
-                            width: imageSize,
-                            height: imageSize,
-                          )
-                          .image,
+                      const NetworkImage(AssetsUrl.originalCircleTransparent),
                       context,
                     ),
                     builder: (context, snapshot) {
@@ -46,7 +42,8 @@ class ScreenSplash extends StatelessWidget {
                         startFutureService(isShowAnimation);
                         return Hero(
                           tag: 'logo',
-                          child: Assets.images.originalCircleTransparent.image(
+                          child: CachedNetworkImage(
+                            imageUrl: AssetsUrl.originalCircleTransparent,
                             width: imageSize,
                             height: imageSize,
                           ),

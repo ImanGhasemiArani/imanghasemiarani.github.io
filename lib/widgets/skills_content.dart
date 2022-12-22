@@ -1,8 +1,9 @@
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../assets/assets.gen.dart';
+import '../assets/assets.url.dart';
 import '../assets/strs.dart';
 
 class SkillsContent extends StatelessWidget {
@@ -71,7 +72,10 @@ class SkillsContent extends StatelessWidget {
                               ),
                         ),
                         const SizedBox(width: 10),
-                        Assets.icons.diamondsBulk.svg(color: Colors.amber),
+                        SvgPicture.network(
+                          AssetsUrl.diamondsBulk,
+                          color: Colors.amber,
+                        )
                       ]),
                       const SizedBox(height: 30),
                       Row(

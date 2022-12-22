@@ -1,9 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '../../assets/assets.gen.dart';
+import '../../assets/assets.url.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({
@@ -45,9 +47,10 @@ class NavBar extends StatelessWidget {
               ),
               child: Hero(
                 tag: 'logo',
-                child: Assets.images.originalCircleTransparent.image(
-                  height: 40,
+                child: CachedNetworkImage(
+                  imageUrl: AssetsUrl.originalCircleTransparent,
                   width: 40,
+                  height: 40,
                 ),
               ),
             ),
@@ -93,9 +96,10 @@ class LargeScreenNavBar extends StatelessWidget {
           ),
           child: Hero(
             tag: 'logo',
-            child: Assets.images.originalCircleTransparent.image(
-              height: 40,
+            child: CachedNetworkImage(
+              imageUrl: AssetsUrl.originalCircleTransparent,
               width: 40,
+              height: 40,
             ),
           ),
         ),
@@ -120,17 +124,19 @@ class NavBarItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final icon = SvgGenImage(iconSvgPath).svg(
+    final icon = SvgPicture.network(
+      iconSvgPath,
       key: const ValueKey<bool>(false),
       color: Theme.of(context).colorScheme.primary,
       placeholderBuilder: (context) => const SizedBox(width: 24, height: 24),
     );
-    final selectedIcon = SvgGenImage(selectedIconSvgPath).svg(
+    final selectedIcon = SvgPicture.network(
+      selectedIconSvgPath,
       key: const ValueKey<bool>(true),
       color: Theme.of(context).colorScheme.primary,
       placeholderBuilder: (context) => const SizedBox(width: 24, height: 24),
     );
-    
+
     final showAnimation = false.obs;
     if (label != null) {
       final maxWidth =
@@ -163,9 +169,7 @@ class NavBarItem extends StatelessWidget {
                             turns: showAnimation.value ? 1 : 0,
                             child: AnimatedSwitcher(
                               duration: const Duration(milliseconds: 400),
-                              child: showAnimation.value
-                                  ? selectedIcon
-                                  : icon,
+                              child: showAnimation.value ? selectedIcon : icon,
                             ),
                           ),
                         ),
@@ -219,9 +223,7 @@ class NavBarItem extends StatelessWidget {
                           turns: showAnimation.value ? 1 : 0,
                           child: AnimatedSwitcher(
                             duration: const Duration(milliseconds: 400),
-                            child: showAnimation.value
-                                ? selectedIcon
-                                : icon,
+                            child: showAnimation.value ? selectedIcon : icon,
                           ),
                         ),
                       ),
@@ -277,9 +279,7 @@ class NavBarItem extends StatelessWidget {
                         turns: showAnimation.value ? 1 : 0,
                         child: AnimatedSwitcher(
                           duration: const Duration(milliseconds: 400),
-                          child: showAnimation.value
-                              ? selectedIcon
-                              : icon,
+                          child: showAnimation.value ? selectedIcon : icon,
                         ),
                       ),
                     ),
@@ -307,9 +307,7 @@ class NavBarItem extends StatelessWidget {
                       turns: showAnimation.value ? 1 : 0,
                       child: AnimatedSwitcher(
                         duration: const Duration(milliseconds: 400),
-                        child: showAnimation.value
-                            ? selectedIcon
-                            : icon,
+                        child: showAnimation.value ? selectedIcon : icon,
                       ),
                     ),
                   ),

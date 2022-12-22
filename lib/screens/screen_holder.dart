@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 
-import '../assets/assets.gen.dart';
+import '../assets/assets.url.dart';
 import '../assets/strs.dart';
 import '../widgets/my_app_bar/my_app_bar.dart';
 import '../widgets/nav_bar/nav_bar.dart';
@@ -94,28 +94,28 @@ class ScreenHolder extends HookWidget {
     return [
       NavBarItem(
         label: Strs.educationStr,
-        iconSvgPath: Assets.icons.teacherTwoTone.path,
-        selectedIconSvgPath: Assets.icons.teacherBulk.path,
+        iconSvgPath: AssetsUrl.teacherTwoTone,
+        selectedIconSvgPath: AssetsUrl.teacherBulk,
         onPressed: () => navigateTo(KeyController().educationGK),
       ),
-      NavBarItem(
-        label: Strs.personalProjectsStr,
-        iconSvgPath: Assets.icons.code1TwoTone.path,
-        selectedIconSvgPath: Assets.icons.code1Bulk.path,
-        onPressed: () => navigateTo(KeyController().personalProjectsGK),
-      ),
-      NavBarItem(
-        label: Strs.workExperienceStr,
-        iconSvgPath: Assets.icons.brifecaseTimerTwoTone.path,
-        selectedIconSvgPath: Assets.icons.brifecaseTimerBulk.path,
-        onPressed: () => navigateTo(KeyController().workExperienceGK),
-      ),
-      NavBarItem(
-        label: Strs.homeStr,
-        iconSvgPath: Assets.icons.home1TwoTone.path,
-        selectedIconSvgPath: Assets.icons.home1Bulk.path,
-        onPressed: () => navigateTo(KeyController().homeGK),
-      ),
+        NavBarItem(
+          label: Strs.personalProjectsStr,
+          iconSvgPath: AssetsUrl.code1TwoTone,
+          selectedIconSvgPath: AssetsUrl.code1Bulk,
+          onPressed: () => navigateTo(KeyController().personalProjectsGK),
+        ),
+        NavBarItem(
+          label: Strs.workExperienceStr,
+          iconSvgPath: AssetsUrl.brifecaseTimerTwoTone,
+          selectedIconSvgPath: AssetsUrl.brifecaseTimerBulk,
+          onPressed: () => navigateTo(KeyController().workExperienceGK),
+        ),
+        NavBarItem(
+          label: Strs.homeStr,
+          iconSvgPath: AssetsUrl.home1TwoTone,
+          selectedIconSvgPath: AssetsUrl.home1Bulk,
+          onPressed: () => navigateTo(KeyController().homeGK),
+        ),
     ];
   }
 
