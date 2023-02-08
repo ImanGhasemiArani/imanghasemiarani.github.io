@@ -5,16 +5,17 @@
 
 html,
 body {
-    width:100%;
-	height:100%;
+    width: 100%;
+    height: 100%;
     background-color: black;
 }
 
 .header {
-    background-image: url(1.png);
+    /* background-image: url(1.png);
     -webkit-background-size: cover;
     background-size: cover;
-    background-position: center center;
+    background-position: center center; */
+    background-color: black;
     height: 100%;
     width: 100%;
 }
