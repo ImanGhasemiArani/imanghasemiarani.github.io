@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../layouts/adaptive.dart';
 import '../routes.dart';
@@ -197,54 +198,54 @@ class NavBarItemDelegate {
   final bool isSelected;
 }
 
-class MyAppBar extends StatefulWidget {
-  const MyAppBar({super.key});
+// class MyAppBar extends StatefulWidget {
+//   const MyAppBar({super.key});
 
-  @override
-  State<MyAppBar> createState() => _MyAppBarState();
-}
+//   @override
+//   State<MyAppBar> createState() => _MyAppBarState();
+// }
 
-class _MyAppBarState extends State<MyAppBar> with TickerProviderStateMixin {
-  late AnimationController _controller;
+// class _MyAppBarState extends State<MyAppBar> with TickerProviderStateMixin {
+//   late AnimationController _controller;
 
-  bool isClicked = false;
+//   bool isClicked = false;
 
-  @override
-  void initState() {
-    _controller = AnimationController(
-      duration: const Duration(
-        milliseconds: 800,
-      ),
-      vsync: this,
-    );
-    super.initState();
-  }
+//   @override
+//   void initState() {
+//     _controller = AnimationController(
+//       duration: const Duration(
+//         milliseconds: 800,
+//       ),
+//       vsync: this,
+//     );
+//     super.initState();
+//   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+//   @override
+//   void dispose() {
+//     _controller.dispose();
+//     super.dispose();
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return CupertinoButton(
-      onPressed: () {
-        isClicked = !isClicked;
-        isClicked ? _controller.forward() : _controller.reverse();
-      },
-      child: AnimatedIcon(
-        icon: AnimatedIcons.menu_close,
-        progress: _controller,
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return CupertinoButton(
+//       onPressed: () {
+//         isClicked = !isClicked;
+//         isClicked ? _controller.forward() : _controller.reverse();
+//       },
+//       child: AnimatedIcon(
+//         icon: AnimatedIcons.menu_close,
+//         progress: _controller,
+//       ),
+//     );
+//   }
+// }
 
 List<NavBarItemDelegate> getDelegates(BuildContext context) => [
       NavBarItemDelegate(
         route: '/contact',
-        icon: Icons.contact_support_rounded,
+        icon: Ionicons.people,
         label: 'Contact',
         onPressed: () {
           Navigator.pushNamed(context, '/contact');
@@ -252,7 +253,7 @@ List<NavBarItemDelegate> getDelegates(BuildContext context) => [
       ),
       NavBarItemDelegate(
         route: '/work',
-        icon: Icons.work_rounded,
+        icon: Ionicons.briefcase,
         label: 'Work Experience',
         onPressed: () {
           Navigator.pushNamed(context, '/work');
@@ -260,7 +261,7 @@ List<NavBarItemDelegate> getDelegates(BuildContext context) => [
       ),
       NavBarItemDelegate(
         route: '/education',
-        icon: Icons.school_rounded,
+        icon: Ionicons.school,
         label: 'Education',
         onPressed: () {
           Navigator.pushNamed(context, '/education');
@@ -268,7 +269,7 @@ List<NavBarItemDelegate> getDelegates(BuildContext context) => [
       ),
       NavBarItemDelegate(
         route: '/home',
-        icon: Icons.home_rounded,
+        icon: Ionicons.home,
         label: 'Home',
         onPressed: () {
           Navigator.pushNamed(context, '/home');
