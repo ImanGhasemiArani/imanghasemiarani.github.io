@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:my_new_site/layouts/adaptive.dart';
-import 'package:my_new_site/layouts/image_placeholder.dart';
 
+import '../layouts/adaptive.dart';
+import '../layouts/image_placeholder.dart';
 import '../widgets/my_icon.dart';
 
 class HomePage extends StatelessWidget {
@@ -28,15 +28,7 @@ class _DesktopHomePage extends StatelessWidget {
       children: [
         const Expanded(
           flex: 5,
-          child: Align(
-            // alignment: Alignment.centerLeft,
-            child: FadeInImagePlaceholder(
-              image: AssetImage('assets/p2.png'),
-              height: double.infinity,
-              fit: BoxFit.contain,
-              placeholder: SizedBox.shrink(),
-            ),
-          ),
+          child: _MyImage(),
         ),
         Expanded(
           flex: 4,
@@ -44,11 +36,11 @@ class _DesktopHomePage extends StatelessWidget {
             children: const [
               Align(
                 alignment: Alignment.centerLeft,
-                child: _DesktopHomeText(),
+                child: _HomePageText(),
               ),
               Align(
                 alignment: Alignment.bottomRight,
-                child: _DesktopHomeContact(),
+                child: _DesktopHomePageContact(),
               ),
             ],
           ),
@@ -58,81 +50,35 @@ class _DesktopHomePage extends StatelessWidget {
   }
 }
 
-class _DesktopHomeText extends StatelessWidget {
-  const _DesktopHomeText();
+class _MobileHomePage extends StatelessWidget {
+  const _MobileHomePage();
 
   @override
   Widget build(BuildContext context) {
-    return RichText(
-      softWrap: true,
-      maxLines: 10,
-      text: TextSpan(
-        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize! + 10,
-            ),
-        children: [
-          TextSpan(
-            text: 'Hey there,\n',
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontSize:
-                      Theme.of(context).textTheme.bodyLarge!.fontSize! + 17,
-                ),
-          ),
-          const TextSpan(
-            text: 'I\'m ',
-          ),
-          TextSpan(
-            style: Theme.of(context)
-                .textTheme
-                .headlineMedium
-                ?.copyWith(color: Theme.of(context).colorScheme.primary),
+    return Column(
+      children: [
+        const Expanded(
+          flex: 5,
+          child: _MyImage(),
+        ),
+        Expanded(
+          flex: 3,
+          child: Row(
             children: const [
-              TextSpan(
-                text: 'Iman ',
+              Expanded(
+                child: _HomePageText(),
               ),
-              TextSpan(
-                text: 'Ghasemi Arani',
-              ),
+              _MobileHomeContact(),
             ],
           ),
-          TextSpan(
-            children: [
-              const TextSpan(
-                text: ',\n',
-              ),
-              TextSpan(
-                text: 'Front-end',
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineSmall
-                    ?.copyWith(color: Colors.blue),
-              ),
-              const TextSpan(
-                text: ', ',
-              ),
-              TextSpan(
-                text: 'Flutter ',
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineSmall
-                    ?.copyWith(color: Colors.blue),
-              ),
-              const TextSpan(
-                text: 'Developer ',
-              ),
-              const TextSpan(
-                text: 'Based in Iran, Tehran.',
-              ),
-            ],
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
 
-class _DesktopHomeContact extends StatelessWidget {
-  const _DesktopHomeContact();
+class _DesktopHomePageContact extends StatelessWidget {
+  const _DesktopHomePageContact();
 
   @override
   Widget build(BuildContext context) {
@@ -183,40 +129,6 @@ class _DesktopHomeContact extends StatelessWidget {
   }
 }
 
-class _MobileHomePage extends StatelessWidget {
-  const _MobileHomePage();
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          const Expanded(
-            flex: 5,
-            child: FadeInImagePlaceholder(
-              image: AssetImage('assets/p2.png'),
-              width: double.infinity,
-              height: double.infinity,
-              fit: BoxFit.contain,
-              placeholder: SizedBox.shrink(),
-            ),
-          ),
-          Expanded(
-            flex: 3,
-            child: Row(
-              children: const [
-                _MobileHomeText(),
-                Spacer(),
-                _MobileHomeContact(),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class _MobileHomeContact extends StatelessWidget {
   const _MobileHomeContact();
 
@@ -250,36 +162,41 @@ class _MobileHomeContact extends StatelessWidget {
   }
 }
 
-class _MobileHomeText extends StatelessWidget {
-  const _MobileHomeText();
+class _HomePageText extends StatelessWidget {
+  const _HomePageText();
 
   @override
   Widget build(BuildContext context) {
     return RichText(
+      softWrap: true,
+      maxLines: 10,
       text: TextSpan(
-        style: Theme.of(context).textTheme.bodyLarge,
+        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize! +
+                  (isDisplayDesktop(context) ? 10 : 0),
+            ),
         children: [
           TextSpan(
             text: 'Hey there,\n',
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontSize:
-                      (Theme.of(context).textTheme.bodyLarge?.fontSize ?? 14) +
-                          7,
-                ),
+            style: TextStyle(
+              fontSize:
+                  (Theme.of(context).textTheme.bodyLarge?.fontSize ?? 14) +
+                      7 +
+                      (isDisplayDesktop(context) ? 10 : 0),
+            ),
           ),
           const TextSpan(
             text: 'I\'m ',
           ),
           TextSpan(
-            style: Theme.of(context)
-                .textTheme
-                .headlineMedium
-                ?.copyWith(color: Theme.of(context).colorScheme.primary),
-            children: const [
+            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+            children: [
               TextSpan(
-                text: 'Iman\n',
+                text: 'Iman${isDisplayDesktop(context) ? ' ' : '\n'}',
               ),
-              TextSpan(
+              const TextSpan(
                 text: 'Ghasemi Arani',
               ),
             ],
@@ -307,15 +224,26 @@ class _MobileHomeText extends StatelessWidget {
                     ?.copyWith(color: Colors.blue),
               ),
               const TextSpan(
-                text: 'Developer',
-              ),
-              const TextSpan(
-                text: '\nBased in Iran, Tehran.',
+                text: 'Developer Based in Iran, Tehran.',
               ),
             ],
           ),
         ],
       ),
+    );
+  }
+}
+
+class _MyImage extends StatelessWidget {
+  const _MyImage();
+
+  @override
+  Widget build(BuildContext context) {
+    return const FadeInImagePlaceholder(
+      image: AssetImage('assets/p2.png'),
+      height: double.infinity,
+      fit: BoxFit.contain,
+      placeholder: SizedBox.shrink(),
     );
   }
 }

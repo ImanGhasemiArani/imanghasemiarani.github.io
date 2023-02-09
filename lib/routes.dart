@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_new_site/layouts/adaptive.dart';
 
+import 'layouts/adaptive.dart';
 import 'pages/contact.dart' deferred as contact_page;
 import 'pages/home.dart' deferred as home_page;
 import 'pages/work.dart' deferred as work_page;
@@ -8,6 +8,8 @@ import 'pages/education.dart' deferred as education_page;
 import 'pages/root.dart';
 import 'widgets/deferred_widget.dart';
 import 'widgets/nav_bar.dart';
+
+String currentPage = '/';
 
 typedef PathWidgetBuilder = Widget Function(BuildContext, String?);
 
@@ -73,6 +75,7 @@ class RouteConfiguration {
       if (regExpPattern.hasMatch(settings.name!)) {
         final firstMatch = regExpPattern.firstMatch(settings.name!)!;
         final match = (firstMatch.groupCount == 1) ? firstMatch.group(1) : null;
+        currentPage = settings.name!;
         return NoAnimationMaterialPageRoute<void>(
           builder: (context) => path.builder(context, match),
           settings: settings,

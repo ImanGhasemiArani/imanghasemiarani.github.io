@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-// import 'package:google_fonts/google_fonts.dart';
 
 import 'routes.dart';
 import 'website_theme_data.dart';
 
 void main() {
-//   GoogleFonts.config.allowRuntimeFetching = false;
-  runApp(const MySite());
+  runApp(const MySite(initRoute: '/home'));
 }
 
 class MySite extends StatelessWidget {

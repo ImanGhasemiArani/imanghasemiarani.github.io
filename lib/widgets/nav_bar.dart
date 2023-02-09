@@ -2,8 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../layouts/adaptive.dart';
-
-String currentPage = '/';
+import '../routes.dart';
 
 class MyNavigationBar extends StatelessWidget {
   const MyNavigationBar({super.key});
@@ -28,8 +27,12 @@ class NavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final items = <Widget>[];
     for (final delegate in delegates) {
-      items
-          .addAll([_NavBarItem(delegate: delegate), const SizedBox(width: 30)]);
+      items.addAll([
+        _NavBarItem(delegate: delegate),
+        isDisplayDesktop(context)
+            ? const SizedBox(width: 30)
+            : const SizedBox(width: 15)
+      ]);
     }
 
     return Row(
@@ -52,8 +55,7 @@ class _MyNameWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushNamed('/');
-        currentPage = '/';
+        Navigator.of(context).pushNamed('/home');
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -246,7 +248,6 @@ List<NavBarItemDelegate> getDelegates(BuildContext context) => [
         label: 'Contact',
         onPressed: () {
           Navigator.pushNamed(context, '/contact');
-          currentPage = '/contact';
         },
       ),
       NavBarItemDelegate(
@@ -255,7 +256,6 @@ List<NavBarItemDelegate> getDelegates(BuildContext context) => [
         label: 'Work Experience',
         onPressed: () {
           Navigator.pushNamed(context, '/work');
-          currentPage = '/work';
         },
       ),
       NavBarItemDelegate(
@@ -264,7 +264,6 @@ List<NavBarItemDelegate> getDelegates(BuildContext context) => [
         label: 'Education',
         onPressed: () {
           Navigator.pushNamed(context, '/education');
-          currentPage = '/education';
         },
       ),
       NavBarItemDelegate(
@@ -273,7 +272,6 @@ List<NavBarItemDelegate> getDelegates(BuildContext context) => [
         label: 'Home',
         onPressed: () {
           Navigator.pushNamed(context, '/home');
-          currentPage = '/home';
         },
       ),
     ];
