@@ -25,6 +25,7 @@ class TitleWidget extends StatelessWidget {
                 Text(
                   text,
                   style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                        color: Theme.of(context).textTheme.headlineSmall?.color,
                         fontSize: Theme.of(context)
                                 .textTheme
                                 .headlineLarge!
@@ -57,7 +58,7 @@ class _ScrollGuide extends StatelessWidget {
       valueListenable: isVisibleDancingArrow,
       builder: (__, isVisible, _) {
         return AnimatedSwitcher(
-          duration: const Duration(milliseconds: 600),
+          duration: const Duration(milliseconds: 500),
           child: isVisible ? const _DancingArrow() : null,
         );
       },
@@ -65,7 +66,7 @@ class _ScrollGuide extends StatelessWidget {
 
     if (isDisplayDesktop(context)) {
       return ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 700),
+        constraints: const BoxConstraints(maxWidth: 1000),
         child: Padding(
           padding: const EdgeInsets.all(50),
           child: Row(

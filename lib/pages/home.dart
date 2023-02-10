@@ -93,11 +93,11 @@ class _DesktopHomePageContact extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'iman.ghasemi.arani@gmail.com',
+                'E: iman.ghasemi.arani@gmail.com',
                 style: Theme.of(context).textTheme.labelSmall,
               ),
               Text(
-                '+98 920 741 0787',
+                'T: +98 920 741 0787',
                 style: Theme.of(context).textTheme.labelSmall,
               ),
             ],
@@ -109,17 +109,17 @@ class _DesktopHomePageContact extends StatelessWidget {
               CupertinoButton(
                 onPressed: () {},
                 padding: const EdgeInsets.all(10),
-                child: const MyIcon(Ionicons.logo_github),
+                child: const MyIcon(Ionicons.logo_github, 20),
               ),
               CupertinoButton(
                 onPressed: () {},
                 padding: const EdgeInsets.all(10),
-                child: const MyIcon(Ionicons.logo_linkedin),
+                child: const MyIcon(Ionicons.logo_linkedin, 20),
               ),
               CupertinoButton(
                 onPressed: () {},
                 padding: const EdgeInsets.all(10),
-                child: const MyIcon(Ionicons.paper_plane),
+                child: const MyIcon(Ionicons.paper_plane, 20),
               ),
             ],
           ),
@@ -140,22 +140,22 @@ class _MobileHomeContact extends StatelessWidget {
         CupertinoButton(
           onPressed: () {},
           padding: const EdgeInsets.all(10),
-          child: const MyIcon(Ionicons.logo_github),
+          child: const MyIcon(Ionicons.logo_github, 18),
         ),
         CupertinoButton(
           onPressed: () {},
           padding: const EdgeInsets.all(10),
-          child: const MyIcon(Ionicons.logo_linkedin),
+          child: const MyIcon(Ionicons.logo_linkedin, 18),
         ),
         CupertinoButton(
           onPressed: () {},
           padding: const EdgeInsets.all(10),
-          child: const MyIcon(Ionicons.logo_google),
+          child: const MyIcon(Ionicons.logo_google, 18),
         ),
         CupertinoButton(
           onPressed: () {},
           padding: const EdgeInsets.all(10),
-          child: const MyIcon(Ionicons.paper_plane),
+          child: const MyIcon(Ionicons.paper_plane, 18),
         ),
       ],
     );

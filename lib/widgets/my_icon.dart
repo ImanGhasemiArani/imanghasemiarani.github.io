@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class MyIcon extends StatefulWidget {
-  const MyIcon(this.icon, {super.key});
+  const MyIcon(this.icon, this.size, {super.key});
 
   final IconData icon;
+  final double size;
 
   @override
   State<MyIcon> createState() => _MyIconState();
@@ -18,6 +19,7 @@ class _MyIconState extends State<MyIcon> {
       onExit: (_) => isEnter(false),
       child: Icon(
         widget.icon,
+        size: widget.size,
         color: isHover
             ? Theme.of(context).colorScheme.primary
             : Theme.of(context).colorScheme.onPrimary,
