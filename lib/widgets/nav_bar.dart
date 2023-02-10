@@ -244,19 +244,19 @@ class NavBarItemDelegate {
 
 List<NavBarItemDelegate> getDelegates(BuildContext context) => [
       NavBarItemDelegate(
-        route: '/contact',
+        route: '/contacts',
         icon: Ionicons.people,
-        label: 'Contact',
+        label: 'Contacts',
         onPressed: () {
-          Navigator.pushNamed(context, '/contact');
+          Navigator.pushNamed(context, '/contacts');
         },
       ),
       NavBarItemDelegate(
-        route: '/work',
+        route: '/works',
         icon: Ionicons.briefcase,
-        label: 'Work Experience',
+        label: 'Works',
         onPressed: () {
-          Navigator.pushNamed(context, '/work');
+          Navigator.pushNamed(context, '/works');
         },
       ),
       NavBarItemDelegate(

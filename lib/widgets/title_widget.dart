@@ -129,7 +129,7 @@ class _DancingArrowState extends State<_DancingArrow> {
       child: Icon(
         Ionicons.chevron_down,
         color: Theme.of(context).colorScheme.primary,
-        size: 30,
+        size: 35,
       ),
     );
   }

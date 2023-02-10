@@ -25,7 +25,7 @@ class Path {
 class RouteConfiguration {
   static List<Path> paths = [
     Path(
-      r'^' '/work' r'$',
+      r'^' '/works' r'$',
       (context, match) => createPage(
         context,
         DeferredWidget(
@@ -45,7 +45,7 @@ class RouteConfiguration {
       ),
     ),
     Path(
-      r'^' '/contact' r'$',
+      r'^' '/contacts' r'$',
       (context, match) => createPage(
         context,
         DeferredWidget(

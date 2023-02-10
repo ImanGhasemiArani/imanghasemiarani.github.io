@@ -39,7 +39,7 @@ class _ContactsForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return ConstrainedBox(
       constraints: BoxConstraints(
-          maxWidth: isDisplayDesktop(context) ? 1000 : double.infinity),
+          maxWidth: isDisplayDesktop(context) ? 900 : double.infinity),
       child: Column(
         children: [
           SizedBox(
@@ -200,7 +200,7 @@ class _DesktopContactsInfo extends StatelessWidget {
     ]);
 
     return ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 1000),
+        constraints: const BoxConstraints(maxWidth: 900),
         child: Column(children: children));
   }
 }
