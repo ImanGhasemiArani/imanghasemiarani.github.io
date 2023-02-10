@@ -81,15 +81,16 @@ class WebSiteThemeData {
   static const _bold = FontWeight.w700;
 
   static final TextTheme textTheme = TextTheme(
+    headlineLarge: GoogleFonts.montserrat(fontWeight: _bold, fontSize: 30.0),
     headlineMedium: GoogleFonts.montserrat(fontWeight: _bold, fontSize: 20.0),
-    bodySmall: GoogleFonts.oswald(fontWeight: _semiBold, fontSize: 16.0),
     headlineSmall: GoogleFonts.oswald(fontWeight: _medium, fontSize: 16.0),
-    titleMedium: GoogleFonts.montserrat(fontWeight: _medium, fontSize: 16.0),
-    labelSmall: GoogleFonts.montserrat(fontWeight: _regular, fontSize: 12.0),
     bodyLarge: GoogleFonts.montserrat(fontWeight: _regular, fontSize: 14.0),
-    titleSmall: GoogleFonts.montserrat(fontWeight: _medium, fontSize: 14.0),
     bodyMedium: GoogleFonts.montserrat(fontWeight: _regular, fontSize: 16.0),
+    bodySmall: GoogleFonts.oswald(fontWeight: _semiBold, fontSize: 16.0),
     titleLarge: GoogleFonts.montserrat(fontWeight: _bold, fontSize: 16.0),
+    titleMedium: GoogleFonts.montserrat(fontWeight: _medium, fontSize: 16.0),
+    titleSmall: GoogleFonts.montserrat(fontWeight: _medium, fontSize: 14.0),
     labelLarge: GoogleFonts.montserrat(fontWeight: _semiBold, fontSize: 14.0),
+    labelSmall: GoogleFonts.montserrat(fontWeight: _regular, fontSize: 12.0),
   );
 }

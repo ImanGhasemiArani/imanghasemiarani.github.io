@@ -21,6 +21,8 @@ class MySite extends StatelessWidget {
         initialRoute: initRoute,
         onGenerateRoute: RouteConfiguration.onGenerateRoute,
         theme: WebSiteThemeData.darkThemeData,
+        scrollBehavior: ScrollConfiguration.of(context)
+            .copyWith(overscroll: false, scrollbars: false),
       );
     });
   }
