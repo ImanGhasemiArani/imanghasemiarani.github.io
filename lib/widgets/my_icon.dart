@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../pages/animated_cursor_position.dart';
+
 class MyIcon extends StatefulWidget {
   const MyIcon(this.icon, this.size, {super.key});
 
@@ -14,9 +16,11 @@ class _MyIconState extends State<MyIcon> {
   bool isHover = false;
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (_) => isEnter(true),
-      onExit: (_) => isEnter(false),
+    return AnimatedCursorMouseRegion(
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+        borderRadius: BorderRadius.circular(5),
+      ),
       child: Icon(
         widget.icon,
         size: widget.size,

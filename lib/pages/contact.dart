@@ -3,6 +3,7 @@ import 'package:ionicons/ionicons.dart';
 
 import '../layouts/adaptive.dart';
 import '../widgets/title_widget.dart';
+import 'animated_cursor_position.dart';
 
 class ContactPage extends StatelessWidget {
   const ContactPage({super.key});
@@ -111,50 +112,60 @@ class _MessageForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedCursorMouseRegion(
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey, width: 1),
+        border: Border.all(
+          color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+          width: 1,
+        ),
         borderRadius: BorderRadius.circular(10),
+        color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
       ),
-      padding: const EdgeInsets.all(20),
-      width: double.infinity,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const SizedBox(height: 20),
-          TextFormField(
-            decoration: const InputDecoration(
-              hintText: 'Name',
-              border: UnderlineInputBorder(),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey, width: 1),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        padding: const EdgeInsets.all(20),
+        width: double.infinity,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(height: 20),
+            TextFormField(
+              decoration: const InputDecoration(
+                hintText: 'Name',
+                border: UnderlineInputBorder(),
+              ),
             ),
-          ),
-          const SizedBox(height: 20),
-          TextFormField(
-            decoration: const InputDecoration(
-              hintText: 'Email',
-              border: UnderlineInputBorder(),
+            const SizedBox(height: 20),
+            TextFormField(
+              decoration: const InputDecoration(
+                hintText: 'Email',
+                border: UnderlineInputBorder(),
+              ),
             ),
-          ),
-          const SizedBox(height: 20),
-          TextFormField(
-            decoration: const InputDecoration(
-              hintText: 'Message',
-              border: UnderlineInputBorder(),
+            const SizedBox(height: 20),
+            TextFormField(
+              decoration: const InputDecoration(
+                hintText: 'Message',
+                border: UnderlineInputBorder(),
+              ),
+              maxLines: 5,
             ),
-            maxLines: 5,
-          ),
-          const SizedBox(height: 20),
-          Align(
-            alignment: Alignment.centerRight,
-            child: OutlinedButton(
-              onPressed: () {},
-              style: OutlinedButton.styleFrom(
-                  side:
-                      BorderSide(color: Theme.of(context).colorScheme.primary)),
-              child: const Text('Send Message'),
+            const SizedBox(height: 20),
+            Align(
+              alignment: Alignment.centerRight,
+              child: OutlinedButton(
+                onPressed: () {},
+                style: OutlinedButton.styleFrom(
+                    side: BorderSide(
+                        color: Theme.of(context).colorScheme.primary)),
+                child: const Text('Send Message'),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -253,34 +264,44 @@ class _ContactItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedCursorMouseRegion(
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey, width: 1),
+        border: Border.all(
+          color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+          width: 1,
+        ),
         borderRadius: BorderRadius.circular(10),
+        color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
       ),
-      padding: const EdgeInsets.all(20),
-      width: double.infinity,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            icon,
-            size: 40,
-            color: Theme.of(context).colorScheme.primary,
-          ),
-          const SizedBox(height: 20),
-          Text(
-            title,
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          const SizedBox(height: 20),
-          Text(
-            desc,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: Colors.grey,
-                ),
-          ),
-        ],
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey, width: 1),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        padding: const EdgeInsets.all(20),
+        width: double.infinity,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              size: 40,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            const SizedBox(height: 20),
+            Text(
+              title,
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            const SizedBox(height: 20),
+            Text(
+              desc,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: Colors.grey,
+                  ),
+            ),
+          ],
+        ),
       ),
     );
   }

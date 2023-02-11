@@ -3,6 +3,7 @@ import 'package:timeline_tile/timeline_tile.dart';
 
 import '../layouts/adaptive.dart';
 import '../widgets/title_widget.dart';
+import 'animated_cursor_position.dart';
 
 class WorkPage extends StatelessWidget {
   const WorkPage({super.key});
@@ -15,6 +16,7 @@ class WorkPage extends StatelessWidget {
           children: const [
             TitleWidget('Works'),
             _WorkExp(),
+            SizedBox(height: 100)
           ],
         ),
       ),
@@ -68,29 +70,51 @@ class _WorkExp extends StatelessWidget {
                 textDirection: TextDirection.ltr,
                 children: [
                   const SizedBox(width: 10),
-                  Container(
+                  AnimatedCursorMouseRegion(
                     decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .primary
+                            .withOpacity(0.5),
+                        width: 1,
+                      ),
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(15),
                         bottomLeft: Radius.circular(0),
                         topRight: Radius.circular(15),
                         bottomRight: Radius.circular(15),
                       ),
-                      border: Border.all(
-                        color: Theme.of(context).colorScheme.primary,
-                        width: 2,
-                      ),
+                      color: Theme.of(context)
+                          .colorScheme
+                          .primary
+                          .withOpacity(0.1),
                     ),
-                    padding: const EdgeInsets.all(10),
-                    child: Text(
-                      'TA, AP with Java, KNTU',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontSize: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .fontSize! +
-                                (isDisplayDesktop(context) ? 0 : 0),
-                          ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(15),
+                          bottomLeft: Radius.circular(0),
+                          topRight: Radius.circular(15),
+                          bottomRight: Radius.circular(15),
+                        ),
+                        border: Border.all(
+                          color: Theme.of(context).colorScheme.primary,
+                          width: 2,
+                        ),
+                      ),
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
+                        'TA, AP with Java, KNTU',
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontSize: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium!
+                                          .fontSize! +
+                                      (isDisplayDesktop(context) ? 0 : 0),
+                                ),
+                      ),
                     ),
                   ),
                 ],
@@ -137,29 +161,51 @@ class _WorkExp extends StatelessWidget {
                 textDirection: TextDirection.rtl,
                 children: [
                   const SizedBox(width: 10),
-                  Container(
+                  AnimatedCursorMouseRegion(
                     decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .primary
+                            .withOpacity(0.5),
+                        width: 1,
+                      ),
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(15),
                         bottomLeft: Radius.circular(15),
                         topRight: Radius.circular(0),
                         bottomRight: Radius.circular(0),
                       ),
-                      border: Border.all(
-                        color: Theme.of(context).colorScheme.primary,
-                        width: 2,
-                      ),
+                      color: Theme.of(context)
+                          .colorScheme
+                          .primary
+                          .withOpacity(0.1),
                     ),
-                    padding: const EdgeInsets.all(10),
-                    child: Text(
-                      'TA, AP with Java, KNTU',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontSize: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .fontSize! +
-                                (isDisplayDesktop(context) ? 0 : 0),
-                          ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(15),
+                          bottomLeft: Radius.circular(15),
+                          topRight: Radius.circular(0),
+                          bottomRight: Radius.circular(0),
+                        ),
+                        border: Border.all(
+                          color: Theme.of(context).colorScheme.primary,
+                          width: 2,
+                        ),
+                      ),
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
+                        'TA, AP with Java, KNTU',
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontSize: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium!
+                                          .fontSize! +
+                                      (isDisplayDesktop(context) ? 0 : 0),
+                                ),
+                      ),
                     ),
                   ),
                 ],
@@ -207,29 +253,51 @@ class _WorkExp extends StatelessWidget {
                 textDirection: TextDirection.ltr,
                 children: [
                   const SizedBox(width: 10),
-                  Container(
+                  AnimatedCursorMouseRegion(
                     decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .primary
+                            .withOpacity(0.5),
+                        width: 1,
+                      ),
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(0),
                         bottomLeft: Radius.circular(15),
                         topRight: Radius.circular(15),
                         bottomRight: Radius.circular(15),
                       ),
-                      border: Border.all(
-                        color: Theme.of(context).colorScheme.primary,
-                        width: 2,
-                      ),
+                      color: Theme.of(context)
+                          .colorScheme
+                          .primary
+                          .withOpacity(0.1),
                     ),
-                    padding: const EdgeInsets.all(10),
-                    child: Text(
-                      'TA, AP with Java, KNTU',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontSize: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .fontSize! +
-                                (isDisplayDesktop(context) ? 0 : 0),
-                          ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(0),
+                          bottomLeft: Radius.circular(15),
+                          topRight: Radius.circular(15),
+                          bottomRight: Radius.circular(15),
+                        ),
+                        border: Border.all(
+                          color: Theme.of(context).colorScheme.primary,
+                          width: 2,
+                        ),
+                      ),
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
+                        'TA, AP with Java, KNTU',
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontSize: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium!
+                                          .fontSize! +
+                                      (isDisplayDesktop(context) ? 0 : 0),
+                                ),
+                      ),
                     ),
                   ),
                 ],

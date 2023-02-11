@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'constant.dart';
 import 'layouts/adaptive.dart';
+import 'pages/animated_cursor_position.dart';
 import 'pages/contact.dart' deferred as contact_page;
 import 'pages/home.dart' deferred as home_page;
 import 'pages/work.dart' deferred as work_page;
@@ -109,19 +110,9 @@ Widget createPage(BuildContext context, Widget child) {
   late final EdgeInsetsGeometry padding;
   isVisibleDancingArrow.value = true;
   if (isDisplayDesktop(context)) {
-    // appbar = AppBar(
-    //   automaticallyImplyLeading: false,
-    //   elevation: 0,
-    //   title: const MyNavigationBar(),
-    // );
     padding = const EdgeInsets.fromLTRB(40, 80, 40, 0);
     toolbarHeight = 80 + kToolbarHeight;
   } else {
-    // appbar = AppBar(
-    //   actions: const [
-    //     MyAppBar(),
-    //   ],
-    // );
     toolbarHeight = 20 + kToolbarHeight;
     padding = const EdgeInsets.fromLTRB(20, 20, 20, 0);
   }
@@ -131,25 +122,18 @@ Widget createPage(BuildContext context, Widget child) {
     title: const MyNavigationBar(),
     toolbarHeight: kToolbarHeight,
   );
-  return Center(
-    child: Padding(
-      padding: padding,
-      child: Scaffold(
-        appBar: appbar,
-        body: child,
+  final rootChild = Scaffold(
+    body: Center(
+      child: Padding(
+        padding: padding,
+        child: Scaffold(
+          appBar: appbar,
+          body: child,
+        ),
       ),
     ),
   );
-//   return Center(
-//     child: ConstrainedBox(
-//       constraints: const BoxConstraints(maxWidth: maxHomeItemWidth),
-//       child: Padding(
-//         padding: padding,
-//         child: Scaffold(
-//           appBar: appbar,
-//           body: child,
-//         ),
-//       ),
-//     ),
-//   );
+  return isDisplayDesktop(context)
+      ? AnimatedCursor(child: rootChild)
+      : rootChild;
 }
