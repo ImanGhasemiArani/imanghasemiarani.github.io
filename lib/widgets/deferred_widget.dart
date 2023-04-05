@@ -19,7 +19,21 @@ class DeferredWidget extends StatefulWidget {
     this.createWidget, {
     super.key,
     Widget? placeholder,
-  }) : placeholder = placeholder ?? Container();
+  }) : placeholder = placeholder ??
+            Center(
+              child: Builder(
+                  builder: (context) => SizedBox(
+                        height: MediaQuery.of(context).size.height,
+                        child: const RotatedBox(
+                          quarterTurns: 1,
+                          child: LinearProgressIndicator(
+                            color: Color(0xFF4BFFA5),
+                            minHeight: 2,
+                            backgroundColor: Colors.transparent,
+                          ),
+                        ),
+                      )),
+            );
 
   final LibraryLoader libraryLoader;
   final DeferredWidgetBuilder createWidget;
@@ -74,7 +88,10 @@ class _DeferredWidgetState extends State<DeferredWidget> {
       _loadedCreator = widget.createWidget;
       _loadedChild = _loadedCreator!();
     }
-    return _loadedChild ?? widget.placeholder;
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 500),
+      child: _loadedChild ?? widget.placeholder,
+    );
   }
 }
 
