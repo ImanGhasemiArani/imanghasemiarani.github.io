@@ -259,14 +259,14 @@ List<NavBarItemDelegate> getDelegates(BuildContext context) => [
           Navigator.pushNamed(context, '/works');
         },
       ),
-      NavBarItemDelegate(
-        route: '/education',
-        icon: Ionicons.school,
-        label: 'Education',
-        onPressed: () {
-          Navigator.pushNamed(context, '/education');
-        },
-      ),
+      //   NavBarItemDelegate(
+      //     route: '/education',
+      //     icon: Ionicons.school,
+      //     label: 'Education',
+      //     onPressed: () {
+      //       Navigator.pushNamed(context, '/education');
+      //     },
+      //   ),
       NavBarItemDelegate(
         route: '/home',
         icon: Ionicons.home,

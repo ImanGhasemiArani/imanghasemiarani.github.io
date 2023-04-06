@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gallery_image_viewer/gallery_image_viewer.dart';
 import 'package:timeline_tile/timeline_tile.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../constant.dart';
 import '../layouts/adaptive.dart';
+import '../layouts/image_placeholder.dart';
 import '../widgets/title_widget.dart';
 import 'animated_cursor_position.dart';
 
@@ -21,9 +23,85 @@ class WorkPage extends StatelessWidget {
             SizedBox(height: 100),
             _Projects(),
             SizedBox(height: 100),
+            _SeeMore(),
+            SizedBox(height: 100),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _SeeMore extends StatelessWidget {
+  const _SeeMore();
+
+  @override
+  Widget build(BuildContext context) {
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 900),
+      child: Column(children: [
+        RichText(
+            text: TextSpan(
+          text: 'See More Works ( ',
+          style: Theme.of(context).textTheme.titleLarge,
+          children: [
+            TextSpan(
+              text: 'Flutter',
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineSmall
+                  ?.copyWith(color: Colors.blue),
+            ),
+            const TextSpan(text: ', '),
+            TextSpan(
+                text: 'Java ',
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineSmall
+                    ?.copyWith(color: Colors.orange),
+                children: const [
+                  TextSpan(
+                      text: 'Android',
+                      style: TextStyle(color: Colors.greenAccent))
+                ]),
+            const TextSpan(text: ', '),
+            TextSpan(
+              text: 'Python',
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineSmall
+                  ?.copyWith(color: Colors.yellow),
+            ),
+            const TextSpan(text: ', '),
+            TextSpan(
+                text: 'Java',
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineSmall
+                    ?.copyWith(color: Colors.orange),
+                children: const [
+                  TextSpan(text: 'Fx', style: TextStyle(color: Colors.blueGrey))
+                ]),
+            const TextSpan(text: ', '),
+            TextSpan(
+              text: 'C',
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineSmall
+                  ?.copyWith(color: Colors.green),
+            ),
+            const TextSpan(text: ' ) on my gitHub'),
+          ],
+        )),
+        const SizedBox(height: 40),
+        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          OutlinedButton(
+              onPressed: () => launchUrl(Uri.parse(
+                  'https://github.com/ImanGhasemiArani?tab=repositories')),
+              child: const Text('Go to my GitHub')),
+          const SizedBox(width: 20),
+        ]),
+      ]),
     );
   }
 }
@@ -92,7 +170,7 @@ class _MobileProjectItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20),
+        padding: const EdgeInsets.symmetric(vertical: 30),
         child: SizedBox(
             height: imgUrls == null ? 350 : 350 * 2,
             child: Center(
@@ -104,8 +182,13 @@ class _MobileProjectItem extends StatelessWidget {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: iconUrl != null
-                          ? Image.network(iconUrl!,
-                              width: 75, height: 75, fit: BoxFit.cover)
+                          ? FadeInImagePlaceholder(
+                              image: NetworkImage(iconUrl!),
+                              width: 75,
+                              height: 75,
+                              fit: BoxFit.cover,
+                              placeholder: const SizedBox.shrink(),
+                            )
                           : const SizedBox.square(
                               dimension: 75, child: Icon(Icons.circle_rounded)),
                     ),
@@ -123,14 +206,14 @@ class _MobileProjectItem extends StatelessWidget {
                   Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                     if (dLink != null)
                       OutlinedButton(
-                        onPressed: () {},
+                        onPressed: () => launchUrl(Uri.parse(dLink!)),
                         child: const Text('Download'),
                       ),
                     if (dLink != null && dLink != null)
                       const SizedBox(width: 10),
                     if (rLink != null)
                       OutlinedButton(
-                        onPressed: () {},
+                        onPressed: () => launchUrl(Uri.parse(rLink!)),
                         child: const Text('Go to Repo'),
                       ),
                   ]),
@@ -151,7 +234,8 @@ class _MobileProjectItem extends StatelessWidget {
                               width: 350,
                               height: 350,
                               imageDecoration: BoxDecoration(
-                                  border: Border.all(color: Colors.grey)))),
+                                  border: Border.all(
+                                      color: Colors.transparent, width: 5)))),
                     ]),
                 ]))));
   }
@@ -177,7 +261,7 @@ class _DesktopProjectItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20),
+        padding: const EdgeInsets.symmetric(vertical: 30),
         child: SizedBox(
             height: imgUrls == null ? 350 : 350,
             child: Center(
@@ -216,14 +300,14 @@ class _DesktopProjectItem extends StatelessWidget {
                             children: [
                               if (dLink != null)
                                 OutlinedButton(
-                                  onPressed: () {},
+                                  onPressed: () => launchUrl(Uri.parse(dLink!)),
                                   child: const Text('Download'),
                                 ),
                               if (dLink != null && dLink != null)
                                 const SizedBox(width: 10),
                               if (rLink != null)
                                 OutlinedButton(
-                                  onPressed: () {},
+                                  onPressed: () => launchUrl(Uri.parse(rLink!)),
                                   child: const Text('Go to Repo'),
                                 ),
                             ]),
@@ -244,7 +328,8 @@ class _DesktopProjectItem extends StatelessWidget {
                             width: 350,
                             height: 350,
                             imageDecoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey)))),
+                                border: Border.all(
+                                    color: Colors.transparent, width: 5)))),
                 ]))));
   }
 }

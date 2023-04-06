@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../layouts/adaptive.dart';
 import '../layouts/image_placeholder.dart';
@@ -107,17 +108,20 @@ class _DesktopHomePageContact extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               CupertinoButton(
-                onPressed: () {},
+                onPressed: () =>
+                    launchUrl(Uri.parse('https://github.com/ImanGhasemiArani')),
                 padding: const EdgeInsets.all(10),
                 child: const MyIcon(Ionicons.logo_github, 20),
               ),
               CupertinoButton(
-                onPressed: () {},
+                onPressed: () => launchUrl(Uri.parse(
+                    'https://www.linkedin.com/in/iman-ghasemi-arani-742430270')),
                 padding: const EdgeInsets.all(10),
                 child: const MyIcon(Ionicons.logo_linkedin, 20),
               ),
               CupertinoButton(
-                onPressed: () {},
+                onPressed: () =>
+                    launchUrl(Uri.parse('https://t.me/iman_ghasemi_arani')),
                 padding: const EdgeInsets.all(10),
                 child: const MyIcon(Ionicons.paper_plane, 20),
               ),
@@ -138,22 +142,26 @@ class _MobileHomeContact extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         CupertinoButton(
-          onPressed: () {},
+          onPressed: () =>
+              launchUrl(Uri.parse('https://github.com/ImanGhasemiArani')),
           padding: const EdgeInsets.all(10),
           child: const MyIcon(Ionicons.logo_github, 18),
         ),
         CupertinoButton(
-          onPressed: () {},
+          onPressed: () => launchUrl(Uri.parse(
+              'https://www.linkedin.com/in/iman-ghasemi-arani-742430270')),
           padding: const EdgeInsets.all(10),
           child: const MyIcon(Ionicons.logo_linkedin, 18),
         ),
         CupertinoButton(
-          onPressed: () {},
+          onPressed: () => launchUrl(
+              Uri.parse('mailto:iman.ghasemi.arani@gmail.com?subject=&body=')),
           padding: const EdgeInsets.all(10),
           child: const MyIcon(Ionicons.logo_google, 18),
         ),
         CupertinoButton(
-          onPressed: () {},
+          onPressed: () =>
+              launchUrl(Uri.parse('https://t.me/iman_ghasemi_arani')),
           padding: const EdgeInsets.all(10),
           child: const MyIcon(Ionicons.paper_plane, 18),
         ),
