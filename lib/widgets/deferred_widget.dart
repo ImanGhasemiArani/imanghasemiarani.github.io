@@ -59,6 +59,7 @@ class _DeferredWidgetState extends State<DeferredWidget> {
 
   Widget? _loadedChild;
   DeferredWidgetBuilder? _loadedCreator;
+  Widget? tempChild;
 
   @override
   void initState() {
@@ -89,9 +90,29 @@ class _DeferredWidgetState extends State<DeferredWidget> {
       _loadedChild = _loadedCreator!();
     }
     return AnimatedSwitcher(
-      duration: const Duration(milliseconds: 500),
-      child: _loadedChild ?? widget.placeholder,
-    );
+        duration: const Duration(milliseconds: 1000),
+        child: () {
+          if (_loadedChild != null && tempChild != null) {
+            tempChild = null;
+            return _loadedChild!;
+          } else if (_loadedChild != null && tempChild == null) {
+            setState(() {
+              tempChild = _loadedChild;
+              _loadedChild = null;
+            });
+            Future.delayed(
+              const Duration(milliseconds: 2000),
+              () {
+                setState(() {
+                  _loadedChild = tempChild;
+                });
+              },
+            );
+            return widget.placeholder;
+          } else {
+            return widget.placeholder;
+          }
+        }());
   }
 }
 
