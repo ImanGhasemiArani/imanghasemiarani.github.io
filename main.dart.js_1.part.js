@@ -2785,7 +2785,7 @@ B.ML.prototype={
 F(d){var x=null
 return new A.cY(1/0,1/0,new B.w5(A.aop(!1,x,x,x,this.a.c,x),5,1,new B.acL(this),this.d,D.Rw),D.Rx)}}
 B.a1y.prototype={
-gkp(){return A.qC(D.Eu,y.l)}}
+gkp(){return A.qC(D.Ev,y.l)}}
 B.vr.prototype={
 a7(){return new B.MK(C.i)}}
 B.MK.prototype={
@@ -2867,16 +2867,16 @@ for(t=1;t<o.length;++t){u=B.jD(C.aS,o[t])
 v.push(new A.ek(1,C.aG,A.bC(p,A.bC(p,new A.hQ(A.hN(!1,!0,p,p,!0,p,p,p,p,p,p,p,p,p,new B.ZX(q,t,d),p,p,p,p),C.aJ,0,C.A,p,p,p,p,C.l,C.H,p,p),C.l,p,p,new A.bc(p,u,p,p,p,p,C.z),p,1/0,p,p,p,p,1/0),C.l,p,p,n,p,p,p,p,p,p,p),p))}return A.cj(A.a([x,A.fp(A.c6(v,C.p,p,C.q,C.v,p),1)],w),C.p,C.q,C.v)}}
 B.a1M.prototype={}
 B.oM.prototype={
-F(d){return new F.pX(F.alc(A.cj(D.DV,C.p,C.q,C.v)),null)}}
+F(d){return new F.pX(F.alc(A.cj(D.DW,C.p,C.q,C.v)),null)}}
 B.Qn.prototype={
 F(d){var x,w,v,u,t,s=null,r=A.D(d),q=A.D(d).p3.f
 q=A.bD(s,q==null?s:q.c2(C.bz),"Flutter")
 x=A.D(d).p3.f
-x=A.bD(D.EU,x==null?s:x.c2(D.uH),"Java ")
+x=A.bD(D.EV,x==null?s:x.c2(D.uH),"Java ")
 w=A.D(d).p3.f
 w=A.bD(s,w==null?s:w.c2(D.I8),"Python")
 v=A.D(d).p3.f
-v=A.bD(D.EW,v==null?s:v.c2(D.uH),"Java")
+v=A.bD(D.EX,v==null?s:v.c2(D.uH),"Java")
 u=A.D(d).p3.f
 t=y.p
 return new A.d2(G.el,A.cj(A.a([A.a4F(s,s,C.c_,s,s,!0,s,A.bD(A.a([q,C.e7,x,C.e7,w,C.e7,v,C.e7,A.bD(s,u==null?s:u.c2(D.I7),"C"),D.Mu],y.k),r.p3.r,"See More Works ( "),C.b9,s,s,1,C.aR),G.e1,A.c6(A.a([E.xa(D.PS,new B.agm(),s),D.fF],t),C.p,s,C.uA,C.v,s)],t),C.p,C.q,C.v),s)}}
@@ -2887,7 +2887,7 @@ else{x=A.D(d).p3.r.r
 x.toString
 x=v.hc(x+5)
 v=x}v=A.a([new A.cR(C.b3,w,w,A.bN("Projects",w,w,w,v,w,w),w),G.e1],y.p)
-C.b.S(v,new A.aA(D.Fm,new B.afl(d),y.U))
+C.b.S(v,new A.aA(D.F5,new B.afl(d),y.U))
 return new A.d2(G.el,A.cj(v,C.p,C.q,C.v),w)}}
 B.Ok.prototype={
 F(d){var x,w,v,u=this,t=null,s=u.w,r=s==null,q=r?350:700,p=A.jx(15),o=u.c
@@ -3485,8 +3485,8 @@ D.SX=new B.Sb(null)
 D.lM=new A.cY(null,100,null,null)
 D.SH=new B.Px(null)
 D.SR=new B.Qn(null)
-D.DV=A.a(x([D.Q0,D.SX,D.lM,D.SH,D.lM,D.SR,D.lM]),y.p)
-D.Eu=A.a(x([C.b_,C.bW,C.cP,C.wg,C.cQ,C.dQ]),A.a3("w<eP>"))
+D.DW=A.a(x([D.Q0,D.SX,D.lM,D.SH,D.lM,D.SR,D.lM]),y.p)
+D.Ev=A.a(x([C.b_,C.bW,C.cP,C.wg,C.cQ,C.dQ]),A.a3("w<eP>"))
 D.IU=new A.i(-2,0)
 D.KF=new A.fF(C.D,D.IU,4)
 D.KD=new A.fF(C.D,G.uQ,4)
@@ -3503,7 +3503,7 @@ D.HW=new A.bl([100,D.AS,200,D.AL,400,D.Ap,700,D.Ao],y.m)
 D.I5=new A.GH(D.HW,4285132974)
 D.Ox=new A.t(!0,D.I5,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 D.Mt=new A.eq("Android",null,C.a5,D.Ox)
-D.EU=A.a(x([D.Mt]),y.k)
+D.EV=A.a(x([D.Mt]),y.k)
 D.B_=new A.y(4293718001)
 D.AV=new A.y(4291811548)
 D.AR=new A.y(4289773253)
@@ -3517,19 +3517,19 @@ D.HA=new A.bl([50,D.B_,100,D.AV,200,D.AR,300,D.AP,400,D.AM,500,D.AI,600,D.AH,700
 D.I9=new A.k2(D.HA,4284513675)
 D.Nn=new A.t(!0,D.I9,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 D.Mr=new A.eq("Fx",null,C.a5,D.Nn)
-D.EW=A.a(x([D.Mr]),y.k)
+D.EX=A.a(x([D.Mr]),y.k)
 D.cJ=A.a(x(["title","iconUrl","description","imgUrls","rLink","dLink"]),y.s)
 D.Hm=new A.aO(6,{title:"Personal Website (Flutter Web)",iconUrl:"https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/MyWebSite/icon.png",description:"This website is built using Flutter Web. It is a responsive website and is hosted on GitHub Pages. In development of this site, efforts have been made to provide the best web performance. The splash screen and background of site are develop by html,css,js.",imgUrls:null,rLink:"https://github.com/ImanGhasemiArani/imanghasemiarani.github.io",dLink:null},D.cJ,y.R)
-D.Fj=A.a(x(["https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/BrainCode/img%20(1).jpg","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/BrainCode/img%20(2).jpg","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/BrainCode/img%20(3).jpg","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/BrainCode/img%20(4).jpg"]),y.s)
-D.Hn=new A.aO(6,{title:"Brain:Code (Flutter Mobile)",iconUrl:"https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/BrainCode/icon.png",description:"This application is a puzzle game developed with Flutter. And it is currently tested on Android. Camera, memory and accelerometer, gyroscope and vibration sensors are used in this program. Also, in this app, artificial intelligence of facial recognition has also been used. One of the important points of this application is the use of the concept of OOP and proper state managements. This app also has a small backend for checking updates, for which back4app is used. This app include Ads. This app is available on Myket Store.",imgUrls:D.Fj,rLink:"https://github.com/ImanGhasemiArani/brain_code",dLink:"https://myket.ir/app/ghasemiarani.iman.braincode"},D.cJ,y.R)
+D.DS=A.a(x(["https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/BrainCode/img%20(1).jpg","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/BrainCode/img%20(2).jpg","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/BrainCode/img%20(3).jpg","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/BrainCode/img%20(4).jpg","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/BrainCode/img%20(5).jpg"]),y.s)
+D.Ho=new A.aO(6,{title:"Brain:Code (Flutter Mobile)",iconUrl:"https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/BrainCode/icon.png",description:"This application is a puzzle game developed with Flutter. And it is currently tested on Android. Camera, memory and accelerometer, gyroscope and vibration sensors are used in this program. Also, in this app, artificial intelligence of facial recognition has also been used. One of the important points of this application is the use of the concept of OOP and proper state managements. This app also has a small backend for checking updates, for which back4app is used. This app include Ads. This app is available on Myket Store.",imgUrls:D.DS,rLink:"https://github.com/ImanGhasemiArani/brain_code",dLink:"https://myket.ir/app/ghasemiarani.iman.braincode"},D.cJ,y.R)
 D.Hl=new A.aO(6,{title:"Dakke (Flutter)",iconUrl:"https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/Dakke/icon.png",description:"This application is a digital library and book market developed with Flutter. And it has the ability to output on Android, web and iOS. It has the ability to download the book and view and read it in the application reader. It can also be registered with mobile phone number (OTP). This app has a backend and a database. And it works perfectly with the server. The server of this app is currently down. Beautiful animations are also used in the design of this application.",imgUrls:null,rLink:"https://github.com/orgs/Uni-Libro/repositories",dLink:"https://github.com/Uni-Libro/Client/releases/tag/v1.0.0-demo3"},D.cJ,y.R)
-D.Eq=A.a(x(["https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/IGMusic/img%20(1).jpg","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/IGMusic/img%20(2).jpg","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/IGMusic/img%20(3).jpg","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/IGMusic/img%20(4).jpg"]),y.s)
-D.Hp=new A.aO(6,{title:"IG Music (Flutter Mobile)",iconUrl:"https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/IGMusic/icon.png",description:"This is a mobile music player built using Flutter. This music player can play music from local storage, and work with playlists, show notification for control music, dark/light theme, supported 2 language(persian, english), feedback system(create github issue, send email,send to server). This music player have beautiful UI with more animations. This app is available on Myket Store.",imgUrls:D.Eq,rLink:"https://github.com/ImanGhasemiArani/IGMusic",dLink:"https://myket.ir/app/arani.ghasemi.iman.ig_music"},D.cJ,y.R)
-D.EL=A.a(x(["https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/InsShop/img%20(4).jpg","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/InsShop/img%20(1).jpg","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/InsShop/img%20(2).jpg","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/InsShop/img%20(3).jpg","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/InsShop/img%20(5).jpg"]),y.s)
-D.Ho=new A.aO(6,{title:"InsShop (Flutter)",iconUrl:"https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/InsShop/icon.png",description:"This application is an online shopping application with a similar design to Instagram, but with a kinder and friendlier  UI. Due to the use of OOP in the posts section, this software can display different types of posts, such as video, photo, and group posts that can be a combination of video and image. The explorer part has also been implemented. This app currently does not have a backend and is implemented using mock data. It has not yet reached the release stage, so repo is private.",imgUrls:D.EL,rLink:null,dLink:null},D.cJ,y.R)
+D.Er=A.a(x(["https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/IGMusic/img%20(1).jpg","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/IGMusic/img%20(2).jpg","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/IGMusic/img%20(3).jpg","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/IGMusic/img%20(4).jpg"]),y.s)
+D.Hp=new A.aO(6,{title:"IG Music (Flutter Mobile)",iconUrl:"https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/IGMusic/icon.png",description:"This is a mobile music player built using Flutter. This music player can play music from local storage, and work with playlists, show notification for control music, dark/light theme, supported 2 language(persian, english), feedback system(create github issue, send email,send to server). This music player have beautiful UI with more animations. This app is available on Myket Store.",imgUrls:D.Er,rLink:"https://github.com/ImanGhasemiArani/IGMusic",dLink:"https://myket.ir/app/arani.ghasemi.iman.ig_music"},D.cJ,y.R)
+D.EM=A.a(x(["https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/InsShop/img%20(4).jpg","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/InsShop/img%20(1).jpg","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/InsShop/img%20(2).jpg","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/InsShop/img%20(3).jpg","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/InsShop/img%20(5).jpg"]),y.s)
+D.Hn=new A.aO(6,{title:"InsShop (Flutter)",iconUrl:"https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/InsShop/icon.png",description:"This application is an online shopping application with a similar design to Instagram, but with a kinder and friendlier  UI. Due to the use of OOP in the posts section, this software can display different types of posts, such as video, photo, and group posts that can be a combination of video and image. The explorer part has also been implemented. This app currently does not have a backend and is implemented using mock data. It has not yet reached the release stage, so repo is private.",imgUrls:D.EM,rLink:null,dLink:null},D.cJ,y.R)
 D.Fv=A.a(x(["https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/DigDug/img%20(1).png","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/DigDug/img%20(2).png","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/DigDug/img%20(3).png","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/DigDug/img%20(4).png","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/DigDug/img%20(5).png","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/DigDug/img%20(6).png","https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/DigDug/img%20(7).png"]),y.s)
 D.Hk=new A.aO(6,{title:"DigDug (Java Fx)",iconUrl:"https://raw.githubusercontent.com/ImanGhasemiArani/websiteData/main/DigDug/icon.png",description:"This is the DigDug game that developed with javaFx.",imgUrls:D.Fv,rLink:"https://github.com/ImanGhasemiArani/DigDug-Game",dLink:null},D.cJ,y.R)
-D.Fm=A.a(x([D.Hm,D.Hn,D.Hl,D.Hp,D.Ho,D.Hk]),A.a3("w<at<r,@>>"))
+D.F5=A.a(x([D.Hm,D.Ho,D.Hl,D.Hp,D.Hn,D.Hk]),A.a3("w<at<r,@>>"))
 D.AZ=new A.y(4293457385)
 D.AU=new A.y(4291356361)
 D.AQ=new A.y(4289058471)
@@ -3593,4 +3593,4 @@ D.Rx=new A.cz("easy_image_sized_box",y.O)
 D.fW=new B.tp(0,"pan")
 D.md=new B.tp(1,"scale")
 D.S0=new B.tp(2,"rotate")})()}
-$__dart_deferred_initializers__["wChQz1f6mRGH0Aw519kvAmcwZlQ="] = $__dart_deferred_initializers__.current
+$__dart_deferred_initializers__["9QcjCzSyxeElaNJG8eOli+Y+dqk="] = $__dart_deferred_initializers__.current
